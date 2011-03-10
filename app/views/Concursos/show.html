@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Concurso' /}
+
+<div class="concurso-detalle">
+    <h2>Concurso: ${concurso.titulo}</h2>
+
+    #{if concurso.descripcion}
+    <b>Descripcion:</b>
+
+    <p>${concurso.descripcion}</p>
+    #{/if}
+    #{else}
+    <p>No tiene ninguna descripcion.</p>
+    #{/else}
+</div>

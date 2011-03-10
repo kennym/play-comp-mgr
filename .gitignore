@@ -1,0 +1,7 @@
+nbproject/
+logs/
+precompiled/
+test-result/
+tmp/
+db/
+*.log
