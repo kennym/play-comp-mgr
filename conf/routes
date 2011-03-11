@@ -12,6 +12,7 @@ GET     /public/                                staticDir:public
 *       /{controller}/{action}                  {controller}.{action}
 
 # Import CRUD routes
+GET     /admin/?                                Admin.index
 *       /admin                                  module:crud
 
 # Import Secure routes

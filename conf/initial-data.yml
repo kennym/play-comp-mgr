@@ -1,0 +1,7 @@
+ApplicationRole(administrador):
+    nombre:         administrador
+
+Usuario(admin):
+    login:          admin
+    password:       admin
+    rol:            administrador

@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <title>#{get 'title' /}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <title>Administration</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.min.js'}" type="text/javascript" charset="utf-8"></script>
-        #{get 'moreScripts' /}
+        <link rel="stylesheet" type="text/css" media="screen"
+                href="@{'/public/stylesheets/main.css'}" />
+        <link rel="shortcut icon" type="image/png"
+                href="@{'/public/images/favicon.png'}" />
+        <script src="@{'/public/javascripts/jquery-1.5.min.js'}"></script>
     </head>
-    <body>
+    <body id="admin">
+
         <div id="header">
             <div id="logo">
-                Gestor de concursos
+                Gestor de Concursos <span>administraci&oacute;n</span>
             </div>
             <ul id="tools">
                 <li>
-                    <a href="@{ Admin.index() }">Iniciar sesion</a>
+                    <a href="@{Secure.logout()}">Log out</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +44,8 @@
         </div>
 
         <p id="footer">
-            Proyecto de 3º BATIN
+            Proyecto 3º BATIN
         </p>
+
     </body>
 </html>

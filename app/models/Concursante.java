@@ -6,8 +6,6 @@ import javax.persistence.*;
 import play.db.jpa.*;
 import play.data.validation.*;
 
-import models.deadbolt.Role;
-
 import models.*;
 
 /**

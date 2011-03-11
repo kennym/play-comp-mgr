@@ -4,13 +4,13 @@
 #{if concursos.size()}
 
 <div class="concursos">
-    <h3>Concursos</h3>
+    <h2>Concursos</h2>
 
     #{list items:concursos, as: 'concurso'}
     <div class="concurso">
-        <h2 class="post-title">
+        <h3 class="post-title">
             <a href="@{Application.show(concurso.id)}">${concurso.titulo}</a>
-        </h2>
+        </h3>
     </div>
     #{/list}
 </div>

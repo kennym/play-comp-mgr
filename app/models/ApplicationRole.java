@@ -12,23 +12,23 @@ import javax.persistence.Entity;
 @Entity
 public class ApplicationRole extends Model implements Role {
     @Required
-    public String name;
+    public String nombre;
 
-    public ApplicationRole(String name) {
-        this.name = name;
+    public ApplicationRole(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getRoleName() {
-        return name;
+        return nombre;
     }
 
     public static ApplicationRole getByName(String name) {
-        return ApplicationRole.find("byName", name).first();
+        return ApplicationRole.find("byNombre", name).first();
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return this.nombre;
     }
 }
 
