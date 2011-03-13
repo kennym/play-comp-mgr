@@ -9,9 +9,9 @@ import play.db.jpa.*;
 import play.data.validation.*;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Usuario extends Model implements RoleHolder {
 
-    @Email
     @Required
     public String login;
 
@@ -22,16 +22,11 @@ public class Usuario extends Model implements RoleHolder {
     @ManyToOne
     public ApplicationRole rol;
 
-    public Usuario(String login, String password, ApplicationRole rol) {
-        this.login = login;
-        this.password = password;
-        this.rol = rol;
-    }
-
     public static Usuario connect(String login, String password) {
         return find("byLoginAndPassword", login, password).first();
     }
 
+    @Override
     public String toString() {
         return login;
     }

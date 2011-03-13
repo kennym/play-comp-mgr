@@ -1,14 +1,19 @@
 # you describe your data using the YAML notation here
 # and then load them using Fixtures.load("data.yml")
 
-ApplicationRole(administrador):
-    nombre:         administrador
-
-Usuario(admin):
-    login:          admin
-    password:       admin
-    rol:            administrador
-
 Concurso(concurso1):
-    titulo:         Olimpiada de Programacion (Ejemplo)
-    
+    titulo:         Olimpiada de Programación
+
+Equipo(equipo1):
+    nombre:         Equipo #1
+    concurso:       concurso1
+
+Concursante(concursante1):
+    nombre:         Kenny
+    apellido:       Meyer
+    equipo:         equipo1
+
+Usuario(usuario1):
+    login:          kenny
+    password:       meyer
+    role:           concursante

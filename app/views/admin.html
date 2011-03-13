@@ -19,7 +19,7 @@
             </div>
             <ul id="tools">
                 <li>
-                    <a href="@{Secure.logout()}">Log out</a>
+                    <a href="@{Secure.logout()}">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -28,16 +28,29 @@
 
             <ul id="adminMenu">
                 <li class="${request.controller == 'Admin' ? 'selected' : ''}">
-                    <a href="@{Admin.index()}">Administracion</a>
+                    <a href="@{Admin.index()}">Administraci&oacute;n</a>
                 </li>
-                #{secure.check 'admin'}
-                    <li class="${request.controller == 'Concursos' ? 'selected' : ''}">
-                        <a href="@{Concursos.list()}">Concursos</a>
-                    </li>
-                    <li class="${request.controller == 'Usuarios' ? 'selected' : ''}">
-                        <a href="@{Usuarios.list()}">Usuarios</a>
-                    </li>
-                #{/secure.check}
+                <li class="${request.controller == 'Concursos' ? 'selected' : ''}">
+                    <a href="@{Concursos.list()}">Concursos</a>
+                </li>
+                <li class="${request.controller == 'Organizadores' ? 'selected' : ''}">
+                    <a href="@{Organizadores.list()}">Organizadores</a>
+                </li>
+                <li class="${request.controller == 'Equipos' ? 'selected' : ''}">
+                    <a href="@{Equipos.list()}">Equipos</a>
+                </li>
+                <li class="${request.controller == 'Concursantes' ? 'selected' : ''}">
+                    <a href="@{Concursantes.list()}">Concursantes</a>
+                </li>
+                <li class="${request.controller == 'Jurados' ? 'selected' : ''}">
+                    <a href="@{Jurados.list()}">Jurados</a>
+                </li>
+                <li class="${request.controller == 'Usuarios' ? 'selected' : ''}">
+                    <a href="@{Usuarios.list()}">Usuarios</a>
+                </li>
+                <li class="${request.controller == 'ApplicationRoles' ? 'selected' : ''}">
+                    <a href="@{ApplicationRoles.list()}">Roles</a>
+                </li>
             </ul>
 
             #{doLayout /}

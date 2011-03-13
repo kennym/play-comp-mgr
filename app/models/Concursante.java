@@ -1,14 +1,12 @@
 package models;
 
-import java.util.*;
 import javax.persistence.*;
 
 import play.db.jpa.*;
 import play.data.validation.*;
 
-import models.*;
-
-/**
+/**;
+ *
  * Class Name
  *
  * Class description - Explain why you need it and what it does.
@@ -16,7 +14,7 @@ import models.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Concursante extends Model {
+public class Concursante extends Usuario {
 
     @Required
     public String nombre;
@@ -26,10 +24,18 @@ public class Concursante extends Model {
     @ManyToOne
     public Equipo equipo;
 
-    public Concursante(Equipo equipo, String nombre, String apellido) {
+    public Concursante(Equipo equipo,
+                       String nombre,
+                       String apellido,
+                       String login,
+                       String password) {
         this.equipo = equipo;
         this.nombre = nombre;
         this.apellido = apellido;
+
+        this.login = login;
+        this.password = password;
+        this.rol = ApplicationRole.getByName("concursante");
         create();
     }
 

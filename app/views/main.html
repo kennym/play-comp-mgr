@@ -25,17 +25,11 @@
         <div id="main">
 
             <ul id="adminMenu">
+            #{secure.check 'admin'}
                 <li class="${request.controller == 'Admin' ? 'selected' : ''}">
                     <a href="@{Admin.index()}">Administracion</a>
                 </li>
-                #{secure.check 'admin'}
-                    <li class="${request.controller == 'Concursos' ? 'selected' : ''}">
-                        <a href="@{Concursos.list()}">Concursos</a>
-                    </li>
-                    <li class="${request.controller == 'Usuarios' ? 'selected' : ''}">
-                        <a href="@{Usuarios.list()}">Usuarios</a>
-                    </li>
-                #{/secure.check}
+            #{/secure.check}
             </ul>
 
             #{doLayout /}

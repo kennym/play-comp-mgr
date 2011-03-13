@@ -4,6 +4,7 @@ import java.util.*;
 import javax.persistence.*;
 
 import play.db.jpa.*;
+import play.data.validation.*;
 
 import models.*;
 
@@ -15,18 +16,30 @@ import models.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Jurado extends Model {
+public class Jurado extends Usuario {
 
+    @Required
     public String nombre;
+    @Required
     public String apellido;
     
+    @Required
     @ManyToOne
     public Concurso concurso;
 
-    public Jurado(Concurso concurso, String nombre, String apellido) {
+    public Jurado(Concurso concurso,
+                  String nombre,
+                  String apellido,
+                  String login,
+                  String password) {
         this.concurso = concurso;
         this.nombre = nombre;
         this.apellido = apellido;
+
+        this.login = login;
+        this.password = password;
+        this.rol = ApplicationRole.getByName("jurado");
+
         create();
     }
 

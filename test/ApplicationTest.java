@@ -17,7 +17,7 @@ public class ApplicationTest extends FunctionalTest {
         assertNotNull(concurso);
 
         // Crear un organizador para este concurso
-        Organizador org = concurso.crearOrganizador("Ejemplo");
+        Organizador org = concurso.crearOrganizador("Ejemplo", "organizador", "organizador");
         assertNotNull(org);
 
         // Crear un Equipo
@@ -26,8 +26,8 @@ public class ApplicationTest extends FunctionalTest {
         assertNotNull(equipo1);
 
         // Crear concursantes para equipo1
-        Concursante concursante1 = equipo1.crearConcursante("Kenny", "Meyer");
-        Concursante concursante2 = equipo1.crearConcursante("Alumno", "Ejemplar 2");
+        Concursante concursante1 = equipo1.crearConcursante("Kenny", "Meyer", "kenny", "meyer");
+        Concursante concursante2 = equipo1.crearConcursante("Alumno", "Ejemplar 2", "alumno", "ejemplar");
 
         assertNotNull(concursante1);
         assertNotNull(concursante2);
@@ -37,12 +37,11 @@ public class ApplicationTest extends FunctionalTest {
         assertNotNull(equipo2);
 
         // Crear concursante para equipo2
-        Concursante concursante3 = equipo2.crearConcursante("Alumno", "Ejemplar 3");
+        Concursante concursante3 = equipo2.crearConcursante("Alumno", "Ejemplar 3", "test", "test");
         assertNotNull(concursante3);
 
         // Crear jurado para el concurso
-        Jurado jurado = concurso.crearJurado("Juan", "Perez");
+        Jurado jurado = concurso.crearJurado("Juan", "Perez", "jurado", "jurado");
         assertNotNull(jurado);
     }
-    
 }

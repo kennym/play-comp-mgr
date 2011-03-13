@@ -41,8 +41,10 @@ public class Concurso extends Model {
         create();
     }
 
-    public Organizador crearOrganizador(String nombre) {
-        Organizador org = new Organizador(this, nombre);
+    public Organizador crearOrganizador(String nombre,
+                                        String login,
+                                        String password) {
+        Organizador org = new Organizador(this, nombre, login, password);
         this.refresh();
         
         return org;
@@ -55,8 +57,11 @@ public class Concurso extends Model {
         return equipo;
     }
 
-    public Jurado crearJurado(String nombre, String apellido) {
-        Jurado jurado = new Jurado(this, nombre, apellido);
+    public Jurado crearJurado(String nombre,
+                              String apellido,
+                              String login,
+                              String password) {
+        Jurado jurado = new Jurado(this, nombre, apellido, login, password);
         this.refresh();
 
         return jurado;

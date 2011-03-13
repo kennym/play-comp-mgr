@@ -1,13 +1,11 @@
 package models;
 
 import java.util.*;
-import java.util.Date;
 
 import javax.persistence.*;
 
 import play.db.jpa.*;
 
-import models.*;
 /**
  * Class Name
  *
@@ -32,12 +30,16 @@ public class Equipo extends Model {
         create();
     }
 
+    @Override
     public String toString() {
         return this.nombre;
     }
 
-    public Concursante crearConcursante(String nombre, String apellido) {
-        Concursante con = new Concursante(this, nombre, apellido);
+    public Concursante crearConcursante(String nombre,
+                                        String apellido,
+                                        String login,
+                                        String password) {
+        Concursante con = new Concursante(this, nombre, apellido, login, password);
         this.refresh();         
         
         return con;

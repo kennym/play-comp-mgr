@@ -1,11 +1,19 @@
 #{extends 'main.html' /}
 #{set title:'Inicio' /}
 
-#{if concursos.size()}
+<div class="registro">
+    <h2>Registrarte como</h2>
+    <ul>
+        <li><a href="@{ Concursantes.index() }">Concursante</a></li>
+        <li><a href="@{ Jurados.index() }">Jurado</a></li>
+        <li><a href="@{ Organizadores.index() }">Organizador</a></li>
+    </ul>
+</div>
 
 <div class="concursos">
     <h2>Concursos</h2>
 
+#{if concursos.size()}
     #{list items:concursos, as: 'concurso'}
     <div class="concurso">
         <h3 class="post-title">
@@ -13,12 +21,11 @@
         </h3>
     </div>
     #{/list}
-</div>
-
 #{/if}
-
 #{else}
-<div class="empty">
-    No hay ningun concurso planificado.
-</div>
+    <div class="empty">
+        No hay ningun concurso planificado.
+    </div>
 #{/else}
+
+</div>

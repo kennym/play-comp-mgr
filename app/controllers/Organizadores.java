@@ -11,4 +11,4 @@ import models.Organizador;
 @CRUD.For(Organizador.class)
 public class Organizadores extends CRUD {
 
-}
+};

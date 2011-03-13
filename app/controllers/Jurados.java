@@ -9,7 +9,7 @@ import play.mvc.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @With(Secure.class)
-public class Concursantes extends CRUD {
+public class Jurados extends CRUD {
 
     public static void index() {
 

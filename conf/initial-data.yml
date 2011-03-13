@@ -1,7 +1,40 @@
 ApplicationRole(administrador):
     nombre:         administrador
 
-Usuario(admin):
+ApplicationRole(concursante):
+    nombre:         concursante
+
+ApplicationRole(jurado):
+    nombre:         jurado
+
+ApplicationRole(organizador):
+    nombre:         organizador
+
+Usuario(administrador):
     login:          admin
     password:       admin
     rol:            administrador
+# Test data:
+
+Concurso(concurso1):
+    titulo:         Olimpiada de Programación
+    descripcion:    Concurso ejemplar.
+
+Equipo(equipo1):
+    nombre:         Equipo #1
+    concurso:       concurso1
+
+Concursante(concursante1):
+    nombre:         Kenny
+    apellido:       Meyer
+    equipo:         equipo1
+    login:          kenny
+    password:       meyer
+
+Jurado(jurado1):
+    nombre:         Juancho
+    apellido:       Pancho
+    concurso:       concurso1
+    rol:            jurado
+    login:          juancho
+    password:       pancho
