@@ -23,6 +23,12 @@ public class Concurso extends Model {
     @Lob
     public String descripcion;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date initialTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date endTime;
+
     @Temporal(TemporalType.TIME)
     @As("hh:mm:ss")
     public Date duracion;
@@ -41,15 +47,46 @@ public class Concurso extends Model {
         create();
     }
 
+    /**
+     * Iniciar el concurso.
+     */
+    public void iniciar() {
+
+    }
+
+    public void terminar() {
+
+    }
+
+    public void pausar() {
+
+    }
+    /**
+     * Crear y devolver un Organizador() relacionado al concurso actual.
+     *
+     * @param nombre El nombre del organizador
+     * @param apellido El apellido del organizador
+     * @param login El nombre del usuario del organizador
+     * @param password La contraseña del organizador
+     * @return Organizador
+     */
     public Organizador crearOrganizador(String nombre,
+                                        String apellido,
                                         String login,
                                         String password) {
-        Organizador org = new Organizador(this, nombre, login, password);
+        Organizador org = new Organizador(this, nombre, apellido, login, password);
         this.refresh();
         
         return org;
     }
 
+    /**
+     * Crear y devolver un Equipo() relacionado con este concurso.
+     *
+     *
+     * @param nombre El nombre del equipo
+     * @return Equipo
+     */
     public Equipo crearEquipo(String nombre) {
         Equipo equipo = new Equipo(this, nombre);
         this.refresh();
@@ -57,6 +94,15 @@ public class Concurso extends Model {
         return equipo;
     }
 
+    /**
+     * Crear y devolver un Jurado() relacionado con este concurso.
+     *
+     * @param nombre El nombre del Jurado
+     * @param apellido El apellido del Jurado
+     * @param login El nombre del usuario del Jurado
+     * @param password La contraseña del usuario del Jurado
+     * @return Jurado()
+     */
     public Jurado crearJurado(String nombre,
                               String apellido,
                               String login,

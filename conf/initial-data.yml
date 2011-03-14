@@ -7,7 +7,7 @@ ApplicationRole(concursante):
 ApplicationRole(jurado):
     nombre:         jurado
 
-ApplicationRole(organizador):
+ApplicationRole(organizador_rol):
     nombre:         organizador
 
 Usuario(administrador):
@@ -39,3 +39,11 @@ Jurado(jurado1):
     rol:            jurado
     login:          juancho
     password:       pancho
+
+Organizador(organizador):
+    concurso:       concurso1
+    nombre:         El Gran
+    apellido:       Maestro
+    login:          organizador
+    password:       organizador
+    rol:            organizador_rol

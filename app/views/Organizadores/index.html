@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Organizador' /}
+#{set section:'Organizador' /}
+
+
+<div class="concursos">
+    <h2>Tus datos</h2>
+
+    <ul>
+        <li>Concurso: ${ concurso }</li>
+        <li>Nombre:   ${ organizador.nombre_y_apellido() }</li>
+    </ul>
+
+    <h2>Acciones</h2>
+
+    <a href="@{Concursantes.iniciarConcurso(concurso.id)}">Iniciar concurso</a>
+</div>

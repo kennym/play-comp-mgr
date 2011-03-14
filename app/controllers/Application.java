@@ -35,20 +35,5 @@ public class Application extends CRUD {
 
     public static void index() {
         render();
-//        Usuario usuario = connected();
-//        System.out.println(usuario);
-//        if (usuario != null) {
-//            if (usuario.rol == ApplicationRole.getByName("administrador")) {
-//                Admin.index();
-//            } else if (usuario.rol == ApplicationRole.getByName("concursante")) {
-//                Concursantes.index();
-//            } else if (usuario.rol == ApplicationRole.getByName("organizador")) {
-//                Organizadores.index();
-//            } else if (usuario.rol == ApplicationRole.getByName("jurado")) {
-//                Jurados.index();
-//            }
-//        } else {
-//            render();
-//        }
     }
 };

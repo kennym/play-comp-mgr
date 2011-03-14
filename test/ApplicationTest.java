@@ -17,7 +17,7 @@ public class ApplicationTest extends FunctionalTest {
         assertNotNull(concurso);
 
         // Crear un organizador para este concurso
-        Organizador org = concurso.crearOrganizador("Ejemplo", "organizador", "organizador");
+        Organizador org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
         assertNotNull(org);
 
         // Crear un Equipo

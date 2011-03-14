@@ -16,6 +16,7 @@ GET     /admin/?                                    Admin.index
 *       /                                           module:secure
 
 # Concursantes
+GET     /concursante/index                          Concursantes.index
 POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subir_trabajo
 GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrar_trabajo
 

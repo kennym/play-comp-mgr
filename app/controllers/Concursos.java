@@ -5,10 +5,11 @@ import java.util.*;
 import play.libs.Codec;
 
 import models.*;
+
 /**
- * Class Name
+ * Concursos
  *
- * Class description - Explain why you need it and what it does.
+ * Controller for the Concurso model.
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
