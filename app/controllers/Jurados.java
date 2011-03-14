@@ -9,9 +9,6 @@ import play.mvc.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @With(Secure.class)
-public class Jurados extends CRUD {
+public class Jurados extends Application {
 
-    public static void index() {
-
-    }
 }

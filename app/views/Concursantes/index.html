@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Concursante' /}
+#{set section:'Concursante' /}
+
+
+<div class="concursos">
+    <h2>Tus datos</h2>
+    <ul>
+        <li>Concurso: ${ concurso }</li>
+        <li>Equipo:   ${ equipo }</li>
+        <li>Nombre:   ${ nombre }</li>
+    </ul>
+
+#{ifnot concursante.trabajo.exists() }
+    <h3>Subir trabajo</h3>
+    #{form @Concursantes.subir_trabajo(concursante.id), method:'POST',
+        id:'trabajo-form', enctype:'multipart/form-data' }
+        <p>
+            #{field 'trabajo'}
+            <input type="file" name="${field.name}" value="${concursante?.trabajo}" size=""><br />
+            <input type="submit" value="Enviar">
+            #{/field}
+        </p>
+    #{/form}
+#{/ifnot}
+#{else}
+    <h2>Has subido el trabajo!</h2>
+
+    <a href="@{Concursantes.mostrar_trabajo(concursante.id)}">Ver tu trabajo.</a>
+#{/else}
+</div>

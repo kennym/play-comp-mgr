@@ -30,6 +30,7 @@ Concursante(concursante1):
     equipo:         equipo1
     login:          kenny
     password:       meyer
+    rol:            concursante
 
 Jurado(jurado1):
     nombre:         Juancho

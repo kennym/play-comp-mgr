@@ -6,6 +6,6 @@ package controllers;
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
-public class ApplicationRoles extends CRUD {
+public class ApplicationRoles extends Application {
 
 }

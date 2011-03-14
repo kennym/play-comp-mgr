@@ -1,5 +1,7 @@
 package controllers;
 
+import play.mvc.*;
+
 import models.*;
 
 public class Security extends Secure.Security {

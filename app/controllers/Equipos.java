@@ -1,4 +1,5 @@
 package controllers;
+
 /**
  * Class Name
  *
@@ -6,6 +7,6 @@ package controllers;
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
-public class Equipos extends CRUD {
+public class Equipos extends Application {
 
 }

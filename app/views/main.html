@@ -14,10 +14,18 @@
         <div id="header">
             <div id="logo">
                 Gestor de concursos
+                <span>
+                    #{get 'section' /}
+                </span>
             </div>
             <ul id="tools">
                 <li>
-                    <a href="@{ Admin.index() }">Iniciar sesion</a>
+                    #{if usuario}
+                    Hola, ${usuario.login}! <a href="@{ Secure.logout() }">Desconectar.</a>
+                    #{/if}
+                    #{else}
+                    <a href="@{ Secure.login() }">Iniciar sesion</a>
+                    #{/else}
                 </li>
             </ul>
         </div>

@@ -28,7 +28,7 @@ public class Usuario extends Model implements RoleHolder {
 
     @Override
     public String toString() {
-        return login;
+        return "Usuario(" + login + ")";
     }
 
     public List<? extends Role> getRoles() {

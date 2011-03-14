@@ -24,6 +24,11 @@ public class Concursante extends Usuario {
     @ManyToOne
     public Equipo equipo;
 
+    /**
+     * El trabajo en forma de un objeto binario.
+     */
+    public Blob trabajo;
+
     public Concursante(Equipo equipo,
                        String nombre,
                        String apellido,
@@ -40,6 +45,6 @@ public class Concursante extends Usuario {
     }
 
     public String toString() {
-        return this.nombre + " " + this.apellido;
+        return "Concursante(" + this.nombre + " " + this.apellido + ")";
     }
 }

@@ -9,6 +9,6 @@ import models.Organizador;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @CRUD.For(Organizador.class)
-public class Organizadores extends CRUD {
+public class Organizadores extends Application {
 
 };
