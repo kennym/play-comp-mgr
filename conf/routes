@@ -8,13 +8,10 @@ GET     /                                           Application.index
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                    staticDir:public
 
-# Import Secure routes
-*       /                                           module:secure
-
 # Concursantes
 GET     /concursante/index/?                        Concursantes.index
-POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subir_trabajo
-GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrar_trabajo
+POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subirTrabajo
+GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrarTrabajo
 
 # Organizadores
 GET     /organizadores/index/?                      Organizadores.index
@@ -23,6 +20,7 @@ POST    /organizadores/concurso/{id}/parar/?        Organizadores.pararConcurso
 
 # Jurados
 GET     /jurados/index/?                            Jurados.index
+GET     /jurados/evaluar/{id}/?                     Jurados.evaluarConcursante
 
 # Catch all
 *       /{controller}/{action}                      {controller}.{action}
@@ -30,3 +28,6 @@ GET     /jurados/index/?                            Jurados.index
 # Import CRUD routes
 GET     /admin/?                                    Admin.index
 *       /admin                                      module:crud
+
+# Import Secure routes
+*       /                                           module:secure

@@ -17,11 +17,14 @@ public class Concursantes extends Application {
         Usuario usuario = connected();
 
         try {
-            if (usuario.rol != ApplicationRole.getByName("concursante")) {
-                renderText("No eres un concursante.");
-            }
+            if (usuario.rol != ApplicationRole.getByName("concursante"))
+                forbidden("No eres un concursante.");
         } catch (NullPointerException e) {
-            renderText("Tienes que inciar sesión primero.");
+            try {
+                Secure.login();
+            } catch (Throwable ex) {
+                ex.printStackTrace();
+            }
         }
 
         Concursante concursante = Concursante.find("byLogin", usuario.login).first();
@@ -34,9 +37,19 @@ public class Concursantes extends Application {
         render(concursante, concurso, equipo);
     }
 
-    public static void subir_trabajo(Long id, Blob trabajo) {
+    public static void subirTrabajo(Long id, Blob trabajo) {
         // Obtener concursante de la base de datos
         Concursante concursante = Concursante.findById(id);
+
+        // Verificar que el usuario puede subir su trabajo y que el concurso
+        // está en progreso.
+        if (concursante.equipo.concurso.tiempoFinal != null) {
+            // TODO: Visualizar un error en la página web.
+        }
+
+        if (concursante.puedeSubirTrabajo != true) {
+            // TODO
+        }
 
         // Actualizar el trabajo
         concursante.trabajo = trabajo;
@@ -48,7 +61,7 @@ public class Concursantes extends Application {
         Concursantes.index();
     }
 
-    public static void mostrar_trabajo(Long id) {
+    public static void mostrarTrabajo(Long id) {
         // Obtener concursante de la base de datos
         Concursante concursante = Concursante.findById(id);
 

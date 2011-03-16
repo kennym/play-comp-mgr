@@ -21,7 +21,11 @@ Concurso(concurso1):
     descripcion:    Concurso ejemplar.
 
 Equipo(equipo1):
-    nombre:         Equipo #1
+    nombre:         Raul Peña
+    concurso:       concurso1
+
+Equipo(equipo2):
+    nombre:         Ciudad del Este
     concurso:       concurso1
 
 Concursante(concursante1):
@@ -30,6 +34,30 @@ Concursante(concursante1):
     equipo:         equipo1
     login:          kenny
     password:       meyer
+    rol:            concursante
+
+Concursante(concursante2):
+    nombre:         Jorge
+    apellido:       Gimenez
+    equipo:         equipo1
+    login:          jorge
+    password:       gimenez
+    rol:            concursante
+
+Concursante(concursante3):
+    nombre:         Juancho
+    apellido:       El Pancho
+    equipo:         equipo2
+    login:          concursante3
+    password:       concursante3
+    rol:            concursante
+
+Concursante(concursante4):
+    nombre:         Felix
+    apellido:       Fimelicks
+    equipo:         equipo2
+    login:          concursante4
+    password:       concursante4
     rol:            concursante
 
 Jurado(jurado1):

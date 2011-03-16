@@ -6,7 +6,6 @@ import javax.persistence.*;
 import org.joda.time.*;
 import org.hibernate.annotations.Type;
 
-
 import play.db.jpa.*;
 import play.data.validation.*;
 import play.data.binding.As;
@@ -28,10 +27,10 @@ public class Concurso extends Model {
     public String descripcion;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @As("dd/MM/yyyy/hh:mm")
+    @As("dd/MM/yyyy/hh:mm:ss")
     public Date tiempoInicial;
     @Temporal(TemporalType.TIMESTAMP)
-    @As("dd/MM/yyyy/hh:mm")
+    @As("dd/MM/yyyy/hh:mm:ss")
     public Date tiempoFinal;
 
     /**
@@ -48,8 +47,6 @@ public class Concurso extends Model {
     @OneToMany
     public List<Jurado> jurados;
 
-    public String estado;
-    
     public Concurso(String titulo,
                     String descripcion,
                     Date tiempoInicial,
@@ -59,21 +56,19 @@ public class Concurso extends Model {
         this.tiempoInicial = tiempoInicial;
         this.tiempoFinal = tiempoFinal;
 
-        this.estado = "NO_INICIADO";
-
         create();
     }
 
     public void iniciar(DateTime duracion) {
         this.duracion = duracion;
+        this.tiempoInicial = new Date(new Date().getTime());
 
-        this.estado = "INICIADO";
 
         save();
     }
 
     public void parar() {
-        this.estado = "TERMINADO";
+        this.tiempoFinal = new Date(new Date().getTime());
 
         save();
     }
@@ -106,6 +101,7 @@ public class Concurso extends Model {
      */
     public Equipo crearEquipo(String nombre) {
         Equipo equipo = new Equipo(this, nombre);
+
         this.refresh();
 
         return equipo;
@@ -125,6 +121,7 @@ public class Concurso extends Model {
                               String login,
                               String password) {
         Jurado jurado = new Jurado(this, nombre, apellido, login, password);
+
         this.refresh();
 
         return jurado;

@@ -48,29 +48,4 @@ public class ApplicationTest extends FunctionalTest {
         assertNotNull(jurado);
     }
 
-    @Test
-    public void iniciarConcurso() {
-        // Crear un nuevo concurso
-        new Concurso("Concurso Ejemplar", "", null, null).save();
-
-        Concurso concurso = Concurso.all().first();
-
-        assertNotNull(concurso);
-
-        // Crear un organizador para este concurso
-        Organizador org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
-        assertNotNull(org);
-        assertEquals(org.rol, ApplicationRole.getByName("organizador"));
-
-        // Verificar que el concurso no se inició aún
-        assertEquals(concurso.estado, "NO_INICIADO");
-
-        // Determinar duracion
-        DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm");
-        DateTime duracion = dtf.parseDateTime("00:05"); // 5 minutos
-
-        concurso.iniciar(duracion);
-        assertEquals(concurso.estado, "INICIADO");
-
-    }
 }

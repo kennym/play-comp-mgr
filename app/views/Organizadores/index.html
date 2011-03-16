@@ -2,48 +2,50 @@
 #{set title:'Organizador' /}
 #{set section:'Organizador' /}
 
-<div class="concursos">
-    <h2>Tus datos</h2>
+<div class="main-section">
+    <div id="timechooser">
+
+#{ifnot concurso.tiempoInicial}
+    #{form @Organizadores.iniciarConcurso(concurso.id), method:'POST', id:'timechooser-form'}
+        #{field 'duracion'}
+        <label>Determinar duración del concurso</label>
+        <input type="text" name="${field.name}" id="timepicker" size="5" value="" />
+        #{/}
+        <br />
+        <input type="submit" value="Iniciar Concurso" />
+    #{/form}
+#{/ifnot}
+#{elseif !(concurso.tiempoFinal)}
+    #{form @Organizadores.pararConcurso(concurso.id), method:'POST'}
+        <input type="submit" value="Parar Concurso" />
+    #{/form}
+#{/elseif}
+#{elseif concurso.tiempoInicial && concurso.tiempoFinal}
+        <p>El concurso ha terminado.</p>
+#{/elseif}
+
+    </div>
+</div>
+
+<div class="info-section">
+    <h2>Datos personales</h2>
 
     <ul>
         <li>Nombre:   ${ organizador.nombre_y_apellido() }</li>
         <li>Concurso: ${ concurso }</li>
     </ul>
-
-    <h2>Acciones</h2>
-
-#{form @Concursos.iniciarConcurso(concurso.id), method:'POST'}
-
-        #{field 'duracion'}
-        <div id="timechooser">
-            <label>Determinar duración</label>
-            <input type="text" name="${field.name}" id="timepicker" size="5" value="" />
-            <span class="error">${field.error}</span>
-        </div>
-        #{/}
-
-    #{if concurso.estado == "NO_INICIADO"}
-        <input type="submit" value="Iniciar Concurso" />
-    #{/if}
-    #{elseif concurso.estado == "INICIADO"}
-        <input type="submit" value="Parar Concurso" />
-    #{/elseif}
-    #{elseif concurso.estado == "TERMINADO"}
-        <p>Terminado</p>
-    #{/elseif}
-#{/form}
-
 </div>
 
 <script type="text/javascript">
     $("#timepicker").timepicker({
-            timeOnlyTitle: 'Determinar duración',
-            timeText: 'Tiempo',
-            hourText: 'Horas',
-            minuteText: 'Minutos',
-            secondText: 'Segundos',
-            currentText: 'Tiempo actual',
-            closeText: 'OK',
-            timeFormat: 'hh:mm'
+        timeOnlyTitle: 'Determinar duración',
+        timeText: 'Tiempo',
+        hourText: 'Horas',
+        minuteText: 'Minutos',
+        secondText: 'Segundos',
+        currentText: 'Tiempo actual',
+        closeText: 'OK',
+        timeFormat: 'hh:mm'
     });
+
 </script>

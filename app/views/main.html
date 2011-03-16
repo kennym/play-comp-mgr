@@ -8,6 +8,7 @@
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.5.min.js'}" type="text/javascript" charset="utf-8"></script>
+        <script src="@{'/public/javascripts/jquery.timers.js'}" type="text/javascript" charset="utf-8"></script>
         <link type="text/css" href="@{'/public/stylesheets/smoothness/jquery-ui-1.8.10.custom.css'}" rel="Stylesheet" />
         <script type="text/javascript" src="@{'/public/javascripts/jquery-ui-1.8.10.custom.min.js'}"></script>
         <script type="text/javascript" src="@{'/public/javascripts/jquery-ui-timepicker.js'}"></script>
@@ -36,15 +37,9 @@
 
         <div id="main">
 
-            <ul id="adminMenu">
-            #{secure.check 'admin'}
-                <li class="${request.controller == 'Admin' ? 'selected' : ''}">
-                    <a href="@{Admin.index()}">Administracion</a>
-                </li>
-            #{/secure.check}
-            </ul>
-
+            <div class="main">
             #{doLayout /}
+            </div>
         </div>
 
         <p id="footer">

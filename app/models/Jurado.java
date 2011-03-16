@@ -46,4 +46,8 @@ public class Jurado extends Usuario {
     public String toString() {
         return "Jurado(" + this.nombre + " " + this.apellido + ")";
     }
+
+    public String nombre_y_apellido() {
+        return this.nombre + " " + this.apellido;
+    }
 }

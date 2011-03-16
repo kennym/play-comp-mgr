@@ -1,0 +1,84 @@
+#{extends 'main.html' /}
+#{set title:'Jurado' /}
+#{set section:'Jurado' /}
+<div class="main-section">
+    <h2>Concursantes</h2>
+
+    <table id="tab" border="1" class="ui-widget">
+        <thead class="ui-widget-header">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Equipo</th>
+                <th>Trabajo</th>
+                <th>Evaluaci&oacute;n</th>
+                <th>Puntaje</th>
+            </tr>
+        </thead>
+        <tbody class="ui-widget-content">
+            #{list items:concursantes, as:'concursante'}
+            <tr>
+                <td>${concursante.id}</td>
+                <td>${concursante.nombre}</td>
+                <td>${concursante.apellido}</td>
+                <td>${concursante.equipo}</td>
+                <td>
+                #{if (concursante.trabajo != null) && (concurso.tiempoInicial == null)}
+                    Pendiente
+                #{/if}
+                #{elseif concursante.trabajo != null}
+                    <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver</a>
+                #{/elseif}
+                #{elseif (concurso.tiempoInicial != null) && (concurso.tiempoFinal != null)}
+                    No entregó.
+                #{/elseif}
+                </td>
+                <td>
+                #{if concursante.trabajo.exists() == false}
+                    No disponible
+                #{/if}
+                #{elseif concursante.trabajo.exists() == true}
+                    <a href="@{Jurados.evaluarConcursante(concursante.id)}">Evaluar</a></td>
+                #{/elseif}
+                <td></td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+</div>
+
+<div class="info-section">
+    <h2>Tus datos</h2>
+
+    <ul>
+        <li>Nombre: ${ jurado.nombre_y_apellido() }</li>
+        <li>Concurso: ${ concurso }</li>
+    </ul>
+
+
+<!--<script type="text/javascript">
+   $(document).ready(function()
+   {
+       #{tabularasa.init tableId:'tab'}
+           var tabExtras = {
+               "toolbarTarget": "customiseTable",
+               "toolbar": "<button>hello</button>"
+           };
+           var tabParameters = {
+               "aoColumns": [ {"sName": "name"},
+                              {"sName": "location"}],
+               "sAjaxSource": "",
+               "bProcessing": true,
+               "bServerSide": true,
+               "sDom": 'lfrtip<"customiseTable">'
+            };
+       #{/tabularasa.init}
+
+       // redraw every second
+       $("tab").everyTime(1000, function(i) {
+           $(this).fnDraw(false);
+       });
+   });
+
+</script>-->

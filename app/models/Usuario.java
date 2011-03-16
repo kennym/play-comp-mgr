@@ -16,6 +16,7 @@ public class Usuario extends Model implements RoleHolder {
     public String login;
 
     @Required
+    //@Password
     public String password;
 
     @Required

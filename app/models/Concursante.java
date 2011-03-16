@@ -25,6 +25,8 @@ public class Concursante extends Usuario {
     @ManyToOne
     public Equipo equipo;
 
+    public boolean puedeSubirTrabajo;
+
     /**
      * El trabajo en forma de un objeto binario.
      */
@@ -44,6 +46,7 @@ public class Concursante extends Usuario {
         this.rol = ApplicationRole.getByName("concursante");
         create();
     }
+
 
     public String toString() {
         return "Concursante(" + this.nombre + " " + this.apellido + ")";
