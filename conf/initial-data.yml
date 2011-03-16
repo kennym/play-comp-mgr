@@ -1,4 +1,4 @@
-ApplicationRole(administrador):
+ApplicationRole(administrador_rol):
     nombre:         administrador
 
 ApplicationRole(concursante):
@@ -13,7 +13,7 @@ ApplicationRole(organizador_rol):
 Usuario(administrador):
     login:          admin
     password:       admin
-    rol:            administrador
+    rol:            administrador_rol
 # Test data:
 
 Concurso(concurso1):

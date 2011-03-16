@@ -2,6 +2,8 @@ import org.junit.*;
 import play.test.*;
 import play.mvc.*;
 import play.mvc.Http.*;
+import org.joda.time.DateTime;
+import org.joda.time.format.*;
 import models.*;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ public class ApplicationTest extends FunctionalTest {
     @Test
     public void crearConcurso() {
         // Crear un nuevo concurso
-        new Concurso("Concurso Ejemplar", "", new Date(2011, 8, 8, 8, 8, 8)).save();
+        new Concurso("Concurso Ejemplar", "", null, null).save();
 
         Concurso concurso = Concurso.all().first();
 
@@ -19,6 +21,7 @@ public class ApplicationTest extends FunctionalTest {
         // Crear un organizador para este concurso
         Organizador org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
         assertNotNull(org);
+        assertEquals(org.rol, ApplicationRole.getByName("organizador"));
 
         // Crear un Equipo
         Equipo equipo1 = concurso.crearEquipo("Equipo Ejemplar");
@@ -43,5 +46,31 @@ public class ApplicationTest extends FunctionalTest {
         // Crear jurado para el concurso
         Jurado jurado = concurso.crearJurado("Juan", "Perez", "jurado", "jurado");
         assertNotNull(jurado);
+    }
+
+    @Test
+    public void iniciarConcurso() {
+        // Crear un nuevo concurso
+        new Concurso("Concurso Ejemplar", "", null, null).save();
+
+        Concurso concurso = Concurso.all().first();
+
+        assertNotNull(concurso);
+
+        // Crear un organizador para este concurso
+        Organizador org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
+        assertNotNull(org);
+        assertEquals(org.rol, ApplicationRole.getByName("organizador"));
+
+        // Verificar que el concurso no se inició aún
+        assertEquals(concurso.estado, "NO_INICIADO");
+
+        // Determinar duracion
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm");
+        DateTime duracion = dtf.parseDateTime("00:05"); // 5 minutos
+
+        concurso.iniciar(duracion);
+        assertEquals(concurso.estado, "INICIADO");
+
     }
 }

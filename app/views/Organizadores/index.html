@@ -2,16 +2,48 @@
 #{set title:'Organizador' /}
 #{set section:'Organizador' /}
 
-
 <div class="concursos">
     <h2>Tus datos</h2>
 
     <ul>
-        <li>Concurso: ${ concurso }</li>
         <li>Nombre:   ${ organizador.nombre_y_apellido() }</li>
+        <li>Concurso: ${ concurso }</li>
     </ul>
 
     <h2>Acciones</h2>
 
-    <a href="@{Concursantes.iniciarConcurso(concurso.id)}">Iniciar concurso</a>
+#{form @Concursos.iniciarConcurso(concurso.id), method:'POST'}
+
+        #{field 'duracion'}
+        <div id="timechooser">
+            <label>Determinar duración</label>
+            <input type="text" name="${field.name}" id="timepicker" size="5" value="" />
+            <span class="error">${field.error}</span>
+        </div>
+        #{/}
+
+    #{if concurso.estado == "NO_INICIADO"}
+        <input type="submit" value="Iniciar Concurso" />
+    #{/if}
+    #{elseif concurso.estado == "INICIADO"}
+        <input type="submit" value="Parar Concurso" />
+    #{/elseif}
+    #{elseif concurso.estado == "TERMINADO"}
+        <p>Terminado</p>
+    #{/elseif}
+#{/form}
+
 </div>
+
+<script type="text/javascript">
+    $("#timepicker").timepicker({
+            timeOnlyTitle: 'Determinar duración',
+            timeText: 'Tiempo',
+            hourText: 'Horas',
+            minuteText: 'Minutos',
+            secondText: 'Segundos',
+            currentText: 'Tiempo actual',
+            closeText: 'OK',
+            timeFormat: 'hh:mm'
+    });
+</script>

@@ -16,9 +16,13 @@ GET     /admin/?                                    Admin.index
 *       /                                           module:secure
 
 # Concursantes
-GET     /concursante/index                          Concursantes.index
+GET     /concursante/index/?                        Concursantes.index
 POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subir_trabajo
 GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrar_trabajo
+
+# Concursos
+POST    /concursos/{id}/iniciar/?                   Concursos.iniciarConcurso
+GET     /concursos/{id}/parar/?                     Concursos.pararConcurso
 
 # Catch all
 *       /{controller}/{action}                      {controller}.{action}

@@ -20,6 +20,7 @@ public class Organizador extends Usuario {
     @Required
     public String apellido;
 
+    @Required
     @ManyToOne
     public Concurso concurso;
 

@@ -21,6 +21,7 @@ public class Concursante extends Usuario {
     @Required
     public String apellido;
 
+    @Required
     @ManyToOne
     public Equipo equipo;
 

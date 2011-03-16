@@ -6,12 +6,15 @@
 <div class="concursos">
     <h2>Tus datos</h2>
     <ul>
-        <li>Concurso: ${ concurso }</li>
+        <li>Nombre:   ${ concursante.nombre } ${ concursante.apellido }</li>
         <li>Equipo:   ${ equipo }</li>
-        <li>Nombre:   ${ nombre }</li>
+        <li>Concurso: ${ concurso.toString() }</li>
     </ul>
 
-#{ifnot concursante.trabajo.exists() }
+#{if !(concurso.iniciado)}
+    <h2>El concurso no empezó todavía</h2>
+#{/if}
+#{elseif concurso.iniciado && !(concursante.trabajo.exists()) }
     <h3>Subir trabajo</h3>
     #{form @Concursantes.subir_trabajo(concursante.id), method:'POST',
         id:'trabajo-form', enctype:'multipart/form-data' }
@@ -22,10 +25,10 @@
             #{/field}
         </p>
     #{/form}
-#{/ifnot}
-#{else}
+#{/elseif}
+#{elseif concursante.trabajo.exists() }
     <h2>Has subido el trabajo!</h2>
 
     <a href="@{Concursantes.mostrar_trabajo(concursante.id)}">Ver tu trabajo.</a>
-#{/else}
+#{/elseif}
 </div>

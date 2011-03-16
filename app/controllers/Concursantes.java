@@ -16,21 +16,22 @@ public class Concursantes extends Application {
     public static void index() {
         Usuario usuario = connected();
 
-        System.out.println(usuario.rol);
-        if (usuario.rol != ApplicationRole.getByName("concursante"))
-            // FIXME !
-            renderText("No eres un concursante.");
+        try {
+            if (usuario.rol != ApplicationRole.getByName("concursante")) {
+                renderText("No eres un concursante.");
+            }
+        } catch (NullPointerException e) {
+            renderText("Tienes que inciar sesión primero.");
+        }
 
         Concursante concursante = Concursante.find("byLogin", usuario.login).first();
 
-        String concurso = concursante.equipo.concurso.toString();
+        Concurso concurso = concursante.equipo.concurso;
         String equipo = concursante.equipo.toString();
-        String nombre = concursante.toString();
         System.out.println(concurso);
         System.out.println(equipo);
-        System.out.println(nombre);
 
-        render(concursante, concurso, equipo, nombre);
+        render(concursante, concurso, equipo);
     }
 
     public static void subir_trabajo(Long id, Blob trabajo) {

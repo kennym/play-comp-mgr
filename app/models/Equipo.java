@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.*;
 import java.util.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Equipo extends Model {
     @OneToMany
     public List<Concursante> concursantes;
 
+    @Required
     @ManyToOne
     public Concurso concurso;
 

@@ -3,6 +3,10 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 
+import org.joda.time.*;
+import org.hibernate.annotations.Type;
+
+
 import play.db.jpa.*;
 import play.data.validation.*;
 import play.data.binding.As;
@@ -24,14 +28,18 @@ public class Concurso extends Model {
     public String descripcion;
 
     @Temporal(TemporalType.TIMESTAMP)
-    public Date initialTime;
-
+    @As("dd/MM/yyyy/hh:mm")
+    public Date tiempoInicial;
     @Temporal(TemporalType.TIMESTAMP)
-    public Date endTime;
+    @As("dd/MM/yyyy/hh:mm")
+    public Date tiempoFinal;
 
-    @Temporal(TemporalType.TIME)
-    @As("hh:mm:ss")
-    public Date duracion;
+    /**
+     * Duración del concurso.
+     */
+    @Column(name = "duracion_datetime", nullable = true)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime duracion;
 
     @OneToMany
     public List<Organizador> organizadores;
@@ -39,28 +47,37 @@ public class Concurso extends Model {
     public List<Equipo> equipos;
     @OneToMany
     public List<Jurado> jurados;
+
+    public String estado;
     
-    public Concurso(String titulo, String descripcion, Date duracion) {
+    public Concurso(String titulo,
+                    String descripcion,
+                    Date tiempoInicial,
+                    Date tiempoFinal) {
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.duracion = duracion;
+        this.tiempoInicial = tiempoInicial;
+        this.tiempoFinal = tiempoFinal;
+
+        this.estado = "NO_INICIADO";
+
         create();
     }
 
-    /**
-     * Iniciar el concurso.
-     */
-    public void iniciar() {
+    public void iniciar(DateTime duracion) {
+        this.duracion = duracion;
 
+        this.estado = "INICIADO";
+
+        save();
     }
 
-    public void terminar() {
+    public void parar() {
+        this.estado = "TERMINADO";
 
+        save();
     }
 
-    public void pausar() {
-
-    }
     /**
      * Crear y devolver un Organizador() relacionado al concurso actual.
      *
