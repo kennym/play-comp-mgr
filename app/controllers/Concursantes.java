@@ -52,7 +52,7 @@ public class Concursantes extends Application {
         }
 
         // Actualizar el trabajo
-        concursante.trabajo = trabajo;
+        concursante.crearTrabajo(trabajo);
 
         // Guardar todos los cambios
         concursante.save();
@@ -67,8 +67,8 @@ public class Concursantes extends Application {
 
         // Rendir la URI del trabajo si existe.
         if (concursante.trabajo != null && concursante.trabajo.exists()) {
-            response.contentType = concursante.trabajo.type();
-            renderBinary(concursante.trabajo.get(), concursante.trabajo.length());
+            response.contentType = concursante.trabajo.blob.type();
+            renderBinary(concursante.trabajo.blob.get(), concursante.trabajo.blob.length());
         } else {
             notFound();
         }

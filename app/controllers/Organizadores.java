@@ -43,16 +43,10 @@ public class Organizadores extends Application {
         validation.required(duracion);
         validation.isTrue(duracion);
 
-        System.out.println(duracion);
-
         Concurso concurso = Concurso.findById(id);
 
-        // Convertir duracion a un objeto Date()
-        /// Analizar String
-        DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm");
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm:ss");
         DateTime duracionDateTime = dtf.parseDateTime(duracion);
-
-        System.out.println(duracionDateTime);
 
         concurso.iniciar(duracionDateTime);
 

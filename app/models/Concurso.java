@@ -10,8 +10,6 @@ import play.db.jpa.*;
 import play.data.validation.*;
 import play.data.binding.As;
 
-import models.*;
-
 /**
  * Representa el concurso
  *
@@ -55,14 +53,12 @@ public class Concurso extends Model {
         this.descripcion = descripcion;
         this.tiempoInicial = tiempoInicial;
         this.tiempoFinal = tiempoFinal;
-
         create();
     }
 
     public void iniciar(DateTime duracion) {
         this.duracion = duracion;
-        this.tiempoInicial = new Date(new Date().getTime());
-
+        this.tiempoInicial = new Date();
 
         save();
     }
@@ -71,6 +67,14 @@ public class Concurso extends Model {
         this.tiempoFinal = new Date(new Date().getTime());
 
         save();
+    }
+
+    public void blockSubmissions() {
+        List<Concursante> concursantes = Concursante.all().fetch();
+
+        for(Concursante concursante: concursantes) {
+            concursante.blockSubmission();
+        }
     }
 
     /**

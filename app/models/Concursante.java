@@ -27,10 +27,8 @@ public class Concursante extends Usuario {
 
     public boolean puedeSubirTrabajo;
 
-    /**
-     * El trabajo en forma de un objeto binario.
-     */
-    public Blob trabajo;
+    @OneToOne
+    public Trabajo trabajo;
 
     public Concursante(Equipo equipo,
                        String nombre,
@@ -47,6 +45,18 @@ public class Concursante extends Usuario {
         create();
     }
 
+    public Trabajo crearTrabajo(Blob blob) {
+        Trabajo trab = new Trabajo(this, blob);
+        this.refresh();
+
+        return trab;
+    }
+
+    public void blockSubmission() {
+        this.puedeSubirTrabajo = false;
+
+        this.refresh();
+    }
 
     public String toString() {
         return "Concursante(" + this.nombre + " " + this.apellido + ")";

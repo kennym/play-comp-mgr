@@ -2,6 +2,8 @@
 #{set title:'Organizador' /}
 #{set section:'Organizador' /}
 
+#{showTimer /}
+
 <div class="main-section">
     <div id="timechooser">
 
@@ -9,7 +11,7 @@
     #{form @Organizadores.iniciarConcurso(concurso.id), method:'POST', id:'timechooser-form'}
         #{field 'duracion'}
         <label>Determinar duración del concurso</label>
-        <input type="text" name="${field.name}" id="timepicker" size="5" value="" />
+        <input type="text" name="${field.name}" id="timepicker" size="7" value="00:00:00" />
         #{/}
         <br />
         <input type="submit" value="Iniciar Concurso" />
@@ -34,6 +36,7 @@
         <li>Nombre:   ${ organizador.nombre_y_apellido() }</li>
         <li>Concurso: ${ concurso }</li>
     </ul>
+
 </div>
 
 <script type="text/javascript">
@@ -45,7 +48,8 @@
         secondText: 'Segundos',
         currentText: 'Tiempo actual',
         closeText: 'OK',
-        timeFormat: 'hh:mm'
+        timeFormat: 'hh:mm:ss',
+        showSecond: true
     });
 
 </script>

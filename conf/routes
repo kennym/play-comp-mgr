@@ -8,6 +8,9 @@ GET     /                                           Application.index
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                    staticDir:public
 
+# Concursos
+GET     /concurso/{id}/duracion/?                   Concursos.duracion
+
 # Concursantes
 GET     /concursante/index/?                        Concursantes.index
 POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subirTrabajo

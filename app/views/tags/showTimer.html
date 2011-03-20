@@ -1,8 +1,15 @@
 <div id="timer">
-    <hr />
     <div id="time">
+        #{if _date != null}
         <h2>Tiempo restante</h2>
-        <span>HH:mm:ss</span>
+        <p id="countdown"></p>
+        <br/>
+        #{/if}
     </div>
-    <hr />
 </div>
+
+<script type="text/javascript">
+    #{if _date != null}
+    $('#countdown').countdown({until: +${_date}, format:'Hms' });
+    #{/if}
+</script>

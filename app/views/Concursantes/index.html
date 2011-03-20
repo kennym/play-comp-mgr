@@ -3,6 +3,8 @@
 #{set section:'Concursante' /}
 
 
+    #{showTimer /}
+
 <div class="main-section">
 #{if !(concurso.tiempoInicial)}
     <h2>El concurso no ha empezado aún.</h2>
@@ -10,7 +12,7 @@
 #{/if}
 #{elseif concurso.tiempoInicial && !(concursante.trabajo.exists()) }
     <h3>Subir trabajo</h3>
-    #{form @Concursantes.subir_trabajo(concursante.id), method:'POST',
+    #{form @Concursantes.subirTrabajo(concursante.id), method:'POST',
         id:'trabajo-form', enctype:'multipart/form-data' }
         <p>
             #{field 'trabajo'}
@@ -20,10 +22,10 @@
         </p>
     #{/form}
 #{/elseif}
-#{elseif concursante.trabajo.exists() }
+#{elseif concursante.trabajo != null
     <h2>Has subido el trabajo!</h2>
 
-    <a href="@{Concursantes.mostrar_trabajo(concursante.id)}">Ver tu trabajo.</a>
+    <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
 #{/elseif}
 </div>
 

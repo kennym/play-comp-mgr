@@ -27,7 +27,7 @@
                 #{if (concursante.trabajo != null) && (concurso.tiempoInicial == null)}
                     Pendiente
                 #{/if}
-                #{elseif concursante.trabajo != null}
+                #{elseif (concursante.trabajo != null) && (concurso.tiempoInicial != null)}
                     <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver</a>
                 #{/elseif}
                 #{elseif (concurso.tiempoInicial != null) && (concurso.tiempoFinal != null)}
