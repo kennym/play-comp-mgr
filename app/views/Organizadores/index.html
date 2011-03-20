@@ -30,6 +30,28 @@
 </div>
 
 <div class="info-section">
+
+    <table id="tab" border="1" class="ui-widget">
+        <thead class="ui-widget-header">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody class="ui-widget-content">
+            #{list items:concursantes, as:'concursante'}
+            <tr>
+                <td>${concursante.id}</td>
+                <td>${concursante.nombre}</td>
+                <td>${concursante.apellido}</td>
+                <td>${concursante.equipo}</td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+
     <h2>Datos personales</h2>
 
     <ul>

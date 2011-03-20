@@ -7,9 +7,7 @@ import org.joda.time.format.*;
 
 import models.*;
 
-public class JuradoTest extends FunctionalTest {
-
-
+public class JuradoTest extends UnitTest {
     @Before
     public void setUp() {
         Fixtures.deleteAll();
@@ -21,6 +19,6 @@ public class JuradoTest extends FunctionalTest {
      */
     @Test
     public void evaluarTrabajo() {
-
+        fail();
     }
 }

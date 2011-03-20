@@ -23,18 +23,24 @@ public class Concursante extends Usuario {
 
     @Required
     @ManyToOne
+    public Concurso concurso;
+    @Required
+    @ManyToOne
     public Equipo equipo;
+
 
     public boolean puedeSubirTrabajo;
 
     @OneToOne
     public Trabajo trabajo;
 
-    public Concursante(Equipo equipo,
+    public Concursante(Concurso concurso,
+                       Equipo equipo,
                        String nombre,
                        String apellido,
                        String login,
                        String password) {
+        this.concurso = concurso;
         this.equipo = equipo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,17 +51,16 @@ public class Concursante extends Usuario {
         create();
     }
 
-    public Trabajo crearTrabajo(Blob blob) {
-        Trabajo trab = new Trabajo(this, blob);
-        this.refresh();
+    public void crearTrabajo(Blob blob) {
+        this.trabajo = new Trabajo(this, blob);
 
-        return trab;
+        this.save();
     }
 
     public void blockSubmission() {
         this.puedeSubirTrabajo = false;
 
-        this.refresh();
+        this.save();
     }
 
     public String toString() {

@@ -36,14 +36,4 @@ public class Equipo extends Model {
     public String toString() {
         return this.nombre;
     }
-
-    public Concursante crearConcursante(String nombre,
-                                        String apellido,
-                                        String login,
-                                        String password) {
-        Concursante con = new Concursante(this, nombre, apellido, login, password);
-        this.refresh();         
-        
-        return con;
-    }
 }

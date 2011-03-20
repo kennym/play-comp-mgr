@@ -39,6 +39,8 @@ public class Concurso extends Model {
     public DateTime duracion;
 
     @OneToMany
+    public List<Concursante> concursantes;
+    @OneToMany
     public List<Organizador> organizadores;
     @OneToMany
     public List<Equipo> equipos;
@@ -70,9 +72,7 @@ public class Concurso extends Model {
     }
 
     public void blockSubmissions() {
-        List<Concursante> concursantes = Concursante.all().fetch();
-
-        for(Concursante concursante: concursantes) {
+        for(Concursante concursante: this.concursantes) {
             concursante.blockSubmission();
         }
     }
@@ -129,6 +129,27 @@ public class Concurso extends Model {
         this.refresh();
 
         return jurado;
+    }
+
+    /**
+     * Create and return a contestant
+     *
+     * @param nombre El nombre del Jurado
+     * @param apellido El apellido del Jurado
+     * @param login El nombre del usuario del Jurado
+     * @param password La contraseña del usuario del Jurado
+     * @return Jurado()
+     */
+    public Concursante crearConcursante(Equipo equipo,
+                                       String nombre,
+                                       String apellido,
+                                       String login,
+                                       String password) {
+        Concursante concursante = new Concursante(this, equipo, nombre, apellido, login, password);
+
+        this.refresh();
+
+        return concursante;
     }
 
     public String toString() {

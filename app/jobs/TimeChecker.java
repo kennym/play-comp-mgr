@@ -15,6 +15,8 @@ import models.*;
  * Checks when contest finsished, and sets the final time accordingly plus
  * blocks the user submissions.
  *
+ * Think of it as a timer.
+ *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Every("5s")

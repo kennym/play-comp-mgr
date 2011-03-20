@@ -54,9 +54,6 @@ public class Concursantes extends Application {
         // Actualizar el trabajo
         concursante.crearTrabajo(trabajo);
 
-        // Guardar todos los cambios
-        concursante.save();
-
         // Volver al índice
         Concursantes.index();
     }

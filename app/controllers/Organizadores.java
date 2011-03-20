@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import org.joda.time.*;
 import org.joda.time.format.*;
 
@@ -31,11 +33,12 @@ public class Organizadores extends Application {
 
         Organizador organizador = Organizador.find("byLogin", usuario.login).first();
 
-        System.out.println(organizador);
         Concurso concurso = organizador.concurso;
+        List<Concursante> concursantes = concurso.concursantes;
+        assert(concursantes != null);
         String nombre = organizador.toString();
 
-        render(organizador, concurso, nombre);
+        render(organizador, concurso, concursantes, nombre);
     }
 
     public static void iniciarConcurso(Long id, String duracion) {
