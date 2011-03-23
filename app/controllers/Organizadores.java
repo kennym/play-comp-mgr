@@ -34,8 +34,7 @@ public class Organizadores extends Application {
         Organizador organizador = Organizador.find("byLogin", usuario.login).first();
 
         Concurso concurso = organizador.concurso;
-        List<Concursante> concursantes = concurso.concursantes;
-        assert(concursantes != null);
+        List<Concursante> concursantes = Concursante.find("byConcursoLike", concurso).fetch();
         String nombre = organizador.toString();
 
         render(organizador, concurso, concursantes, nombre);
@@ -60,6 +59,14 @@ public class Organizadores extends Application {
         Concurso concurso = Concurso.findById(id);
 
         concurso.parar();
+
+        Organizadores.index();
+    }
+
+    public static void canSubmit(Long id, boolean canSubmit) {
+        Concursante concursante = Concursante.findById(id);
+
+        concursante.canSubmit(canSubmit);
 
         Organizadores.index();
     }

@@ -29,33 +29,37 @@ Equipo(equipo2):
     concurso:       concurso1
 
 Concursante(concursante1):
+    concurso:       concurso1
+    equipo:         equipo1
     nombre:         Kenny
     apellido:       Meyer
-    equipo:         equipo1
     login:          kenny
     password:       meyer
     rol:            concursante
 
 Concursante(concursante2):
+    concurso:       concurso1
+    equipo:         equipo1
     nombre:         Jorge
     apellido:       Gimenez
-    equipo:         equipo1
     login:          jorge
     password:       gimenez
     rol:            concursante
 
 Concursante(concursante3):
+    concurso:       concurso1
+    equipo:         equipo2
     nombre:         Juancho
     apellido:       El Pancho
-    equipo:         equipo2
     login:          concursante3
     password:       concursante3
     rol:            concursante
 
 Concursante(concursante4):
+    concurso:       concurso1
+    equipo:         equipo2
     nombre:         Felix
     apellido:       Fimelicks
-    equipo:         equipo2
     login:          concursante4
     password:       concursante4
     rol:            concursante

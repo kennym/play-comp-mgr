@@ -35,12 +35,13 @@
                 #{/elseif}
                 </td>
                 <td>
-                #{if concursante.trabajo.exists() == false}
+                #{if concursante.trabajo != null }
                     No disponible
+                    #{if concursante.trabajo.exists() == true}
+                        <a href="@{Jurados.evaluarConcursante(concursante.id)}">Evaluar</a></td>
+                    #{/if}
                 #{/if}
-                #{elseif concursante.trabajo.exists() == true}
-                    <a href="@{Jurados.evaluarConcursante(concursante.id)}">Evaluar</a></td>
-                #{/elseif}
+
                 <td></td>
             </tr>
             #{/list}

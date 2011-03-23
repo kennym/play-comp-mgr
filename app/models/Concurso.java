@@ -38,13 +38,13 @@ public class Concurso extends Model {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime duracion;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Concursante> concursantes;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Organizador> organizadores;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Equipo> equipos;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Jurado> jurados;
 
     public Concurso(String titulo,
@@ -73,7 +73,7 @@ public class Concurso extends Model {
 
     public void blockSubmissions() {
         for(Concursante concursante: this.concursantes) {
-            concursante.blockSubmission();
+            concursante.canSubmit(false);
         }
     }
 

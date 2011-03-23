@@ -1,4 +1,4 @@
-#{extends 'main.html' /}
+
 #{set title:'Organizador' /}
 #{set section:'Organizador' /}
 
@@ -38,6 +38,7 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Equipo</th>
+                <th>Bloquear submision</th>
             </tr>
         </thead>
         <tbody class="ui-widget-content">
@@ -47,6 +48,15 @@
                 <td>${concursante.nombre}</td>
                 <td>${concursante.apellido}</td>
                 <td>${concursante.equipo}</td>
+                <td>
+                #{if concursante.isBlocked() == false}
+                    #{a @Organizadores.canSubmit(concursante.id, false) }Bloquear#{/a}
+                #{/if}
+                #{else}
+                    #{a @Organizadores.canSubmit(concursante.id, true) }Desbloquear#{/a}
+                #{/else}
+                </td>
+
             </tr>
             #{/list}
         </tbody>

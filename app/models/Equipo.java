@@ -19,7 +19,7 @@ public class Equipo extends Model {
 
     public String nombre;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Concursante> concursantes;
 
     @Required

@@ -20,6 +20,7 @@ GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrarTrabajo
 GET     /organizadores/index/?                      Organizadores.index
 POST    /organizadores/concurso/{id}/iniciar/?      Organizadores.iniciarConcurso
 POST    /organizadores/concurso/{id}/parar/?        Organizadores.pararConcurso
+GET     /organizadores/concursante/{id}/can_submit/? Organizadores.canSubmit
 
 # Jurados
 GET     /jurados/index/?                            Jurados.index

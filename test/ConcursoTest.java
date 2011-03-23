@@ -44,6 +44,10 @@ public class ConcursoTest extends UnitTest {
         Jurado jurado = concurso.crearJurado("Juan", "Perez", "jurado", "jurado");
         assertNotNull(jurado);
 
+        // Verify that we have an organizer
+        assertFalse(concurso.organizadores.isEmpty());
+        // Verify that we have a jury
+        assertFalse(concurso.jurados.isEmpty());
         // Verify that we have some participants
         assertFalse(concurso.concursantes.isEmpty());
     }

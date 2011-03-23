@@ -28,7 +28,6 @@ public class Concursante extends Usuario {
     @ManyToOne
     public Equipo equipo;
 
-
     public boolean puedeSubirTrabajo;
 
     @OneToOne
@@ -57,10 +56,14 @@ public class Concursante extends Usuario {
         this.save();
     }
 
-    public void blockSubmission() {
-        this.puedeSubirTrabajo = false;
+    public void canSubmit(boolean yesOrNo) {
+        this.puedeSubirTrabajo = yesOrNo;
 
         this.save();
+    }
+
+    public boolean isBlocked() {
+        return this.puedeSubirTrabajo;
     }
 
     public String toString() {
