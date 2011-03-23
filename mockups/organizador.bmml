@@ -1,0 +1,134 @@
+<mockup version="1.0" skin="sketch" measuredW="1291" measuredH="1106" mockupW="1231" mockupH="1086">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="60" y="20" w="619" h="605" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Organizador%20-%20El%20Gran%20Maestro%0Ahttp%3A//localhost/organizador/index</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Title" x="110" y="100" w="253" h="-1" measuredW="239" measuredH="62" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Organizador</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::SubTitle" x="363" y="111" w="-1" h="-1" measuredW="196" measuredH="40" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>El%20Gran%20Maestro</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="215" w="518" h="93" measuredW="150" measuredH="207" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>-1</selectedIndex>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Arrow" x="620" y="260" w="153" h="10" measuredW="150" measuredH="100" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <curvature>0</curvature>
+        <direction>bottom</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Accordion" x="773" y="521" w="518" h="239" measuredW="150" measuredH="207" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>2</selectedIndex>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::Arrow" x="620" y="291" w="153" h="302" measuredW="150" measuredH="100" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <curvature>1</curvature>
+        <direction>top</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Arrow" x="176" y="232" w="177" h="419" measuredW="150" measuredH="100" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.75</backgroundAlpha>
+        <curvature>-1</curvature>
+        <direction>top</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="773" y="610" w="518" h="150" measuredW="374" measuredH="148" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <markup>true</markup>
+        <selectedIndex>0</selectedIndex>
+        <text>Puesto%2C%20Nombre%2C%20Apellido%2C%20Equipo%2C%20Puntaje%0A1%2C%20Ricky%2C%20Rick%2C%20Raul%20Pe%F1a%2C%200%0A2%2C%20Alfredo%2C%20Gimenez%2C%20Raul%20Pe%F1a%2C%200%0A3%2C%20Freddy%2C%20Buller%2C%20Ciudad%20del%20Este%2C%2010%0A4%2C%20Freddy%2C%20The%20Loco%2C%20Encarnaci%F3n%2C%200%0A%7B2%2C%2010%2C%2010%2C%2020%2C%205%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::List" x="693" y="20" w="263" h="126" measuredW="100" measuredH="126" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <hasHeader>true</hasHeader>
+        <selectedIndex>-1</selectedIndex>
+        <text>Funciones%20del%20Organizador%0A-%20Empezar%20concurso%0A%20-%20Determinar%20duracion%0A%20-%20Determinar%20problema%0A-%20Bloquear%20concursantes</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Accordion" x="780" y="245" w="511" h="234" measuredW="150" measuredH="207" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>1</selectedIndex>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="455" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="262" y="731" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>center</align>
+        <text>HH%3Amm%3Ass</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::SubTitle" x="242" y="691" w="-1" h="-1" measuredW="253" measuredH="40" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Duraci%F3n%20del%20concurso</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::SubTitle" x="262" y="781" w="-1" h="-1" measuredW="214" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Elegir%20el%20problema</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="143" y="836" w="-1" h="-1" measuredW="142" measuredH="50" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%28o%29%20Elecci%F3n%20rand%F3mica%0A%28%20%29%20Elecci%F3n%20manual</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Arrow" x="262" y="864" w="10" h="28" measuredW="150" measuredH="100" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.25</backgroundAlpha>
+        <curvature>0</curvature>
+        <direction>top</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="159" y="892" w="-1" h="-1" measuredW="209" measuredH="75" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%28o%29%20Hallar%20Factorial%0A%28%20%29%20Numeros%20primos%20hasta%2010000%0A%28%20%29%20etc...</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Button" x="127" y="982" w="478" h="55" measuredW="74" measuredH="28" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Dale%20ya%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::DataGrid" x="780" y="300" w="511" h="150" measuredW="394" measuredH="148" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <markup>true</markup>
+        <text>%23%2C%20Nombre%2C%20Apellido%2C%20Equipo%2C%20Bloquear%20subida%0A1%2C%20Ricky%2C%20Rick%2C%20Raul%20Pe%F1a%2C%20Desbloqueado%0A2%2C%20Alfredo%2C%20Gimenez%2C%20Raul%20Pe%F1a%2C%20Bloqueado%0A3%2C%20Freddy%2C%20Buller%2C%20Ciudad%20del%20Este%2C%20Desbloqueado%0A4%2C%20Freddy%2C%20The%20Loco%2C%20Encarnaci%F3n%2C%20Desbloqueado</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
