@@ -207,7 +207,6 @@ h3 span {
 
 form {
     padding: 10px;
-    background: #253142;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
@@ -257,43 +256,18 @@ form label {
     -webkit-box-shadow: 0 2px 0 #4E840B;
 }
 
-/** Pagination **/
+/** Accordion **/
 
-#pagination {
-    list-style: none;
-    padding: 0;
-    position: relative;
-    color: #869AB1;
-    font-size: 90%;
-    top: -20px;
-    margin-bottom: 30px;
+#accordion {
+    text-align: center;
 }
 
-#pagination a {
-    color: #869AB1;
-    font-size: 90%;
+#accordion table {
+    /* Align the table in center, but align the text left */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
-
-#pagination #previous {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#pagination #previous:before {
-    content: '<< ';
-}
-
-#pagination #next {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-#pagination #next:after {
-    content: ' >>';
-}
-
 /** Footer **/
 
 #footer {

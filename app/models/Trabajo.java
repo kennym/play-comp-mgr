@@ -23,6 +23,8 @@ public class Trabajo extends Model {
      */
     public Blob blob;
 
+    public long points;
+
     @Temporal(TemporalType.TIMESTAMP)
     @As("dd/MM/yyyy/hh:mm:ss")
     public Date creationDate = new Date();

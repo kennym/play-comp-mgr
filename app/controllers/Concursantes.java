@@ -1,9 +1,10 @@
 package controllers;
 
-import models.*;
+import java.util.List;
 
 import play.db.jpa.Blob;
 
+import models.*;
 /**
  * Class Name
  *
@@ -29,12 +30,13 @@ public class Concursantes extends Application {
 
         Concursante concursante = Concursante.find("byLogin", usuario.login).first();
 
-        Concurso concurso = concursante.equipo.concurso;
+        Concurso concurso = concursante.concurso;
+        List<Concursante> concursantes = Concursante.find("byConcursoLike", concurso).fetch();
         String equipo = concursante.equipo.toString();
         System.out.println(concurso);
         System.out.println(equipo);
 
-        render(concursante, concurso, equipo);
+        render(concursante, concursantes, concurso, equipo);
     }
 
     public static void subirTrabajo(Long id, Blob trabajo) {

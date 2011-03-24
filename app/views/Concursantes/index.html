@@ -1,39 +1,76 @@
 #{extends 'main.html' /}
-#{set title:'Concursante' /}
+#{set title:'Concursante - ' + concursante.nombre + ' ' + concursante.apellido /}
 #{set section:'Concursante' /}
-
+#{set subsection:concursante.nombre + ' ' + concursante.apellido /}
 
     #{showTimer /}
 
 <div class="main-section">
-#{if !(concurso.tiempoInicial)}
-    <h2>El concurso no ha empezado aún.</h2>
-    <p>Cuando empieza el concurso puedes subir tu trabajo.</p>
-#{/if}
-#{elseif concurso.tiempoInicial && !(concursante.trabajo.exists()) }
-    <h3>Subir trabajo</h3>
-    #{form @Concursantes.subirTrabajo(concursante.id), method:'POST',
-        id:'trabajo-form', enctype:'multipart/form-data' }
-        <p>
-            #{field 'trabajo'}
-            <input type="file" name="${field.name}" value="${concursante?.trabajo}" size=""><br />
-            <input type="submit" value="Enviar">
-            #{/field}
-        </p>
-    #{/form}
-#{/elseif}
-#{elseif concursante.trabajo != null}
-    <h2>Has subido el trabajo!</h2>
-
-    <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
-#{/elseif}
+    <h2>
+    #{if !(concurso.tiempoInicial)}
+        El concurso no ha empezado aún.
+    #{/if}
+    #{else}
+        El concurso está en progreso.
+    #{/else}
+    </h2>
 </div>
 
-<div class="info-section">
-    <h2>Datos personales:</h2>
-    <ul>
-        <li>Nombre:   ${ concursante.nombre } ${ concursante.apellido }</li>
-        <li>Equipo:   ${ equipo }</li>
-        <li>Concurso: ${ concurso.toString() }</li>
-    </ul>
+<div id="accordion">
+    <h3><a href="#tab1">Informaci&oacute;n General</a></h3>
+    <div>
+        <h3>Anunciado del problema</h3>
+    </div>
+
+    <h3><a href="#tab2">Subir trabajo</a></h3>
+    <div>
+    #{if concursante.trabajo == null }
+        #{form @Concursantes.subirTrabajo(concursante.id), method:'POST',
+            id:'trabajo-form', enctype:'multipart/form-data' }
+            <p>
+                #{field 'trabajo'}
+                <input type="file" name="${field.name}" value="${concursante?.trabajo}" size=""><br />
+                <input type="submit" value="Enviar">
+                #{/field}
+            </p>
+        #{/form}
+    #{/if}
+    #{elseif concursante.trabajo != null}
+        <h3>Has subido el trabajo!</h3>
+
+        <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
+    #{/elseif}
+    </div>
+
+    <h3><a href="#tab3">Resumen</a></h3>
+    <div>
+        <table id="tab" border="1" class="ui-widget">
+            <thead class="ui-widget-header">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Equipo</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+            <tbody class="ui-widget-content">
+                #{list concursantes, as:'concursante'}
+                <tr>
+                    <td>${concursante_index}</td>
+                    <td>${concursante.nombre}</td>
+                    <td>${concursante.apellido}</td>
+                    <td>${concursante.equipo}</td>
+                    <td>${concursante.getPoints() }</td>
+                </tr>
+                #{/list}
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#accordion').accordion();
+});
+</script>

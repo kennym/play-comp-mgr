@@ -66,6 +66,23 @@ public class Concursante extends Usuario {
         return this.puedeSubirTrabajo;
     }
 
+    /**
+     * Calculate the points received from the Jury for the work.
+     *
+     * @return long
+     */
+    public long getPoints() {
+        long points;
+
+        try {
+            points = this.trabajo.points;
+        } catch (NullPointerException e) {
+            points = 0;
+        }
+
+        return points;
+    }
+
     public String toString() {
         return "Concursante(" + this.nombre + " " + this.apellido + ")";
     }
