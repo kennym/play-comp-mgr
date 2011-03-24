@@ -20,5 +20,9 @@ public class Problem extends Model {
 
     @Required
     @Lob
-    public String statement;
+    public String body;
+
+    public Problem (String title, String body) {
+
+    }
 }

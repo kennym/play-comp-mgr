@@ -15,25 +15,26 @@ import play.db.jpa.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Equipo extends Model {
+public class Team extends Model {
 
-    public String nombre;
+    public String name;
 
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Concursante> concursantes;
+    public List<Participant> participants;
 
     @Required
     @ManyToOne
-    public Concurso concurso;
+    public Competition competition;
 
-    public Equipo(Concurso concurso, String nombre) {
-        this.concurso = concurso;
-        this.nombre = nombre;
+    public Team(Competition competition, String name) {
+        this.competition = competition;
+        this.name = name;
+
         create();
     }
 
     @Override
     public String toString() {
-        return this.nombre;
+        return this.name;
     }
 }

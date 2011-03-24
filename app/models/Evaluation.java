@@ -8,7 +8,7 @@ import play.data.validation.*;
 /**
  * Evaluation
  *
- * A Jury member creates an evaluation of a work, and modifies the indicators.
+ * A Judge member creates an evaluation of a work, and modifies the indicators.
  * The indicators serve to point the actual work.
  * 
  * Indicators:
@@ -21,15 +21,15 @@ import play.data.validation.*;
  */
 @Entity
 public class Evaluation extends Model {
-    public Trabajo work;
-    public Jurado jury;
+    public Work work;
+    public Judge jury;
 
     // Indicators
     public boolean compiles;
     public boolean returnsCorrectResult;
 
     // Methods, and all that stuff
-    public Evaluation (Trabajo work, Jurado jury) {
+    public Evaluation (Work work, Judge jury) {
         this.work = work;
         this.jury = jury;
 

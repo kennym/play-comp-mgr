@@ -27,22 +27,22 @@ public class TimeChecker extends Job {
         Logger.info("TimeChecker started");
 
         // Get all contests which have already started, not yet finished
-        List<Concurso> concursos = Concurso.find(
-                "select c from Concurso c where c.tiempoInicial != null "
-                + "and c.tiempoFinal = null")
+        List<Competition> competitions = Competition.find(
+                "select c from Competition c where c.startTime != null "
+                + "and c.endTime = null")
                 .fetch();
 
         // Iterate through contests and check if time limit has been passed
-        for (Concurso concurso: concursos) {
+        for (Competition competition: competitions) {
             // Check if initialTime + duration => currentTime
-            DateTime initialTime = new DateTime(concurso.tiempoInicial);
-            if (initialTime.plus(concurso.duracion.getMillisOfDay()).isBeforeNow()) {
+            DateTime startTime = new DateTime(competition.startTime);
+            if (startTime.plus(competition.duration.getMillisOfDay()).isBeforeNow()) {
                 // Set final time or stop it
-                concurso.parar();
+                competition.stop();
                 // Block submissions
-                concurso.blockSubmissions();
+                competition.blockSubmissions();
 
-                Logger.info("TimeChecker: " + concurso.toString() + " stopped!");
+                Logger.info("TimeChecker: " + competition.toString() + " stopped!");
             }
         }
 

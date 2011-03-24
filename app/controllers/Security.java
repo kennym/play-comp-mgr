@@ -6,8 +6,8 @@ import models.*;
 
 public class Security extends Secure.Security {
 
-    static boolean authentify(String usuario, String password) {
-        return Usuario.connect(usuario, password) != null;
+    static boolean authentify(String user, String password) {
+        return User.connect(user, password) != null;
     }
 
     static void onDisconnected() {
@@ -19,8 +19,8 @@ public class Security extends Secure.Security {
     }
 
     static boolean check(String profile) {
-        Usuario user = Usuario.find("byLogin", profile).first();
-        if (user.rol == ApplicationRole.getByName("administrador"))
+        User user = User.find("byLogin", profile).first();
+        if (user.role == ApplicationRole.getByName("administrator"))
             return true;
         return false;
     }

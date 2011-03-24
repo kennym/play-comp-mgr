@@ -13,14 +13,14 @@ public class OrganizadorTest extends UnitTest {
     @Test
     public void organizarConcurso() {
         // Crear un nuevo concurso
-        new Concurso("Concurso Ejemplar", "", null, null).save();
+        new Competition("Concurso Ejemplar", "", null, null).save();
 
-        Concurso concurso = Concurso.all().first();
+        Competition concurso = Competition.all().first();
 
         assertNotNull(concurso);
 
         // Crear un organizador para este concurso
-        Organizador org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
+        Organizer org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
         assertNotNull(org);
         assertEquals(org.rol, ApplicationRole.getByName("organizador"));
 

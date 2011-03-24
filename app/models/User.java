@@ -10,7 +10,7 @@ import play.data.validation.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Usuario extends Model implements RoleHolder {
+public class User extends Model implements RoleHolder {
 
     @Required
     public String login;
@@ -21,9 +21,9 @@ public class Usuario extends Model implements RoleHolder {
 
     @Required
     @ManyToOne
-    public ApplicationRole rol;
+    public ApplicationRole role;
 
-    public static Usuario connect(String login, String password) {
+    public static User connect(String login, String password) {
         return find("byLoginAndPassword", login, password).first();
     }
 
@@ -33,6 +33,6 @@ public class Usuario extends Model implements RoleHolder {
     }
 
     public List<? extends Role> getRoles() {
-        return Arrays.asList(rol);
+        return Arrays.asList(role);
     }
 }

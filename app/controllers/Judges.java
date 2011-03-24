@@ -14,12 +14,12 @@ import models.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @With(Secure.class)
-public class Jurados extends Application {
+public class Judges extends Application {
     public static void index() {
-        Usuario usuario = connected();
+        User user = connected();
 
         try {
-            if (usuario.rol != ApplicationRole.getByName("jurado"))
+            if (user.role != ApplicationRole.getByName("judge"))
                 forbidden("No eres un jurado.");
         } catch (NullPointerException e) {
             try {
@@ -29,11 +29,11 @@ public class Jurados extends Application {
             }
         }
 
-        Jurado jurado = Jurado.find("byLogin", usuario.login).first();
-        Concurso concurso = jurado.concurso;
-        List<Concursante> concursantes = Concursante.all().fetch();
+        Judge judge = Judge.find("byLogin", user.login).first();
+        Competition competition = judge.competition;
+        List<Participant> participants = Participant.all().fetch();
 
-        render(jurado, concurso, concursantes);
+        render(judge, competition, participants);
     }
 
     /**
@@ -41,9 +41,7 @@ public class Jurados extends Application {
      *
      * @param id Identificador del concursante
      */
-    public static void evaluarConcursante(Long id) {
-        Concursante concursante = Concursante.findById(id);
-
-        render(concursante);
+    public static void evalaluateWork(Long id) {
+        // TODO
     }
 }

@@ -16,64 +16,65 @@ import play.data.binding.As;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Concurso extends Model {
+public class Competition extends Model {
 
     @Required
-    public String titulo;
+    public String title;
 
     @Lob
-    public String descripcion;
+    public String description;
 
     @Temporal(TemporalType.TIMESTAMP)
     @As("dd/MM/yyyy/hh:mm:ss")
-    public Date tiempoInicial;
+    public Date startTime;
     @Temporal(TemporalType.TIMESTAMP)
     @As("dd/MM/yyyy/hh:mm:ss")
-    public Date tiempoFinal;
+    public Date endTime;
 
     /**
      * Duración del concurso.
      */
     @Column(name = "duracion_datetime", nullable = true)
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime duracion;
+    public DateTime duration;
 
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Concursante> concursantes;
+    public List<Participant> participants;
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Organizador> organizadores;
+    public List<Organizer> organizers;
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Equipo> equipos;
+    public List<Team> teams;
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Jurado> jurados;
+    public List<Judge> judges;
 
-    public Concurso(String titulo,
-                    String descripcion,
-                    Date tiempoInicial,
-                    Date tiempoFinal) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.tiempoInicial = tiempoInicial;
-        this.tiempoFinal = tiempoFinal;
+    public Competition(String title,
+                       String description,
+                       Date startTime,
+                       Date endTime) {
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+
         create();
     }
 
-    public void iniciar(DateTime duracion) {
-        this.duracion = duracion;
-        this.tiempoInicial = new Date();
+    public void start(DateTime duration) {
+        this.duration = duration;
+        this.startTime = new Date();
 
         save();
     }
 
-    public void parar() {
-        this.tiempoFinal = new Date(new Date().getTime());
+    public void stop() {
+        this.endTime = new Date(new Date().getTime());
 
         save();
     }
 
     public void blockSubmissions() {
-        for(Concursante concursante: this.concursantes) {
-            concursante.canSubmit(false);
+        for(Participant participant: this.participants) {
+            participant.canSubmit(false);
         }
     }
 
@@ -86,11 +87,11 @@ public class Concurso extends Model {
      * @param password La contraseña del organizador
      * @return Organizador
      */
-    public Organizador crearOrganizador(String nombre,
-                                        String apellido,
-                                        String login,
-                                        String password) {
-        Organizador org = new Organizador(this, nombre, apellido, login, password);
+    public Organizer createOrganizer(String name,
+                                     String surname,
+                                     String login,
+                                     String password) {
+        Organizer org = new Organizer(this, name, surname, login, password);
         this.refresh();
         
         return org;
@@ -103,12 +104,12 @@ public class Concurso extends Model {
      * @param nombre El nombre del equipo
      * @return Equipo
      */
-    public Equipo crearEquipo(String nombre) {
-        Equipo equipo = new Equipo(this, nombre);
+    public Team createTeam(String name) {
+        Team team = new Team(this, name);
 
         this.refresh();
 
-        return equipo;
+        return team;
     }
 
     /**
@@ -120,15 +121,15 @@ public class Concurso extends Model {
      * @param password La contraseña del usuario del Jurado
      * @return Jurado()
      */
-    public Jurado crearJurado(String nombre,
-                              String apellido,
-                              String login,
-                              String password) {
-        Jurado jurado = new Jurado(this, nombre, apellido, login, password);
+    public Judge createJudge(String name,
+                             String surname,
+                             String login,
+                             String password) {
+        Judge judge = new Judge(this, name, surname, login, password);
 
         this.refresh();
 
-        return jurado;
+        return judge;
     }
 
     /**
@@ -140,19 +141,19 @@ public class Concurso extends Model {
      * @param password La contraseña del usuario del Jurado
      * @return Jurado()
      */
-    public Concursante crearConcursante(Equipo equipo,
-                                       String nombre,
-                                       String apellido,
-                                       String login,
-                                       String password) {
-        Concursante concursante = new Concursante(this, equipo, nombre, apellido, login, password);
+    public Participant createParticipant(Team team,
+                                         String name,
+                                         String surname,
+                                         String login,
+                                         String password) {
+        Participant participant = new Participant(this, team, name, surname, login, password);
 
         this.refresh();
 
-        return concursante;
+        return participant;
     }
 
     public String toString() {
-        return this.titulo;
+        return this.title;
     }
 }

@@ -8,15 +8,14 @@ import play.data.validation.*;
 import play.data.binding.As;
 
 /**
- * Representa el concurso
+ * Representa el trabajo del participante
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Trabajo extends Model {
+public class Work extends Model {
     @Required
-    @OneToOne
-    public Concursante concursante;
+    public Participant participant;
 
     /**
      * El trabajo en forma de un objeto binario.
@@ -29,8 +28,8 @@ public class Trabajo extends Model {
     @As("dd/MM/yyyy/hh:mm:ss")
     public Date creationDate = new Date();
 
-    public Trabajo(Concursante concursante, Blob blob) {
-        this.concursante = concursante;
+    public Work(Participant participant, Blob blob) {
+        this.participant = participant;
         this.blob = blob;
 
         create();

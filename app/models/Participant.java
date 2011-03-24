@@ -14,56 +14,57 @@ import play.data.validation.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
-public class Concursante extends Usuario {
+public class Participant extends User {
 
     @Required
-    public String nombre;
+    public String name;
     @Required
-    public String apellido;
+    public String surname;
 
     @Required
     @ManyToOne
-    public Concurso concurso;
+    public Competition competition;
     @Required
     @ManyToOne
-    public Equipo equipo;
+    public Team team;
 
-    public boolean puedeSubirTrabajo;
+    public boolean canSubmitWork;
 
     @OneToOne
-    public Trabajo trabajo;
+    public Work work;
 
-    public Concursante(Concurso concurso,
-                       Equipo equipo,
-                       String nombre,
-                       String apellido,
+    public Participant(Competition competition,
+                       Team team,
+                       String name,
+                       String surname,
                        String login,
                        String password) {
-        this.concurso = concurso;
-        this.equipo = equipo;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.competition = competition;
+        this.team = team;
+        this.name = name;
+        this.surname = surname;
 
         this.login = login;
         this.password = password;
-        this.rol = ApplicationRole.getByName("concursante");
+        this.role = ApplicationRole.getByName("participant");
+
         create();
     }
 
-    public void crearTrabajo(Blob blob) {
-        this.trabajo = new Trabajo(this, blob);
+    public void createWork(Blob blob) {
+        this.work = new Work(this, blob);
 
         this.save();
     }
 
     public void canSubmit(boolean yesOrNo) {
-        this.puedeSubirTrabajo = yesOrNo;
+        this.canSubmitWork = yesOrNo;
 
         this.save();
     }
 
     public boolean isBlocked() {
-        return this.puedeSubirTrabajo;
+        return this.canSubmitWork;
     }
 
     /**
@@ -75,7 +76,7 @@ public class Concursante extends Usuario {
         long points;
 
         try {
-            points = this.trabajo.points;
+            points = this.work.points;
         } catch (NullPointerException e) {
             points = 0;
         }
@@ -84,6 +85,6 @@ public class Concursante extends Usuario {
     }
 
     public String toString() {
-        return "Concursante(" + this.nombre + " " + this.apellido + ")";
+        return "Concursante(" + this.name + " " + this.surname + ")";
     }
 }
