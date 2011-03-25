@@ -1,13 +1,13 @@
 #{extends 'main.html' /}
-#{set title:'Concursante - ' + concursante.nombre + ' ' + concursante.apellido /}
+#{set title:'Concursante - ' + participant.name + ' ' + participant.surname /}
 #{set section:'Concursante' /}
-#{set subsection:concursante.nombre + ' ' + concursante.apellido /}
+#{set subsection:participant.name + ' ' + participant.surname /}
 
     #{showTimer /}
 
 <div class="main-section">
     <h2>
-    #{if !(concurso.tiempoInicial)}
+    #{if !(competition.startTime)}
         El concurso no ha empezado aún.
     #{/if}
     #{else}
@@ -24,21 +24,21 @@
 
     <h3><a href="#tab2">Subir trabajo</a></h3>
     <div>
-    #{if concursante.trabajo == null }
-        #{form @Concursantes.subirTrabajo(concursante.id), method:'POST',
+    #{if participant.work == null }
+        #{form @Participants.submitWork(participant.id), method:'POST',
             id:'trabajo-form', enctype:'multipart/form-data' }
             <p>
-                #{field 'trabajo'}
-                <input type="file" name="${field.name}" value="${concursante?.trabajo}" size=""><br />
+                #{field 'work'}
+                <input type="file" name="${field.name}" value="${participant.work}" size=""><br />
                 <input type="submit" value="Enviar">
                 #{/field}
             </p>
         #{/form}
     #{/if}
-    #{elseif concursante.trabajo != null}
+    #{elseif participant.work != null}
         <h3>Has subido el trabajo!</h3>
 
-        <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
+        <a href="@{Participants.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
     #{/elseif}
     </div>
 
@@ -55,13 +55,13 @@
                 </tr>
             </thead>
             <tbody class="ui-widget-content">
-                #{list concursantes, as:'concursante'}
+                #{list participants, as:'participant'}
                 <tr>
-                    <td>${concursante_index}</td>
-                    <td>${concursante.nombre}</td>
-                    <td>${concursante.apellido}</td>
-                    <td>${concursante.equipo}</td>
-                    <td>${concursante.getPoints() }</td>
+                    <td>${participant_index}</td>
+                    <td>${participant.name}</td>
+                    <td>${participant.surname}</td>
+                    <td>${participant.team}</td>
+                    <td>${participant.getPoints() }</td>
                 </tr>
                 #{/list}
             </tbody>

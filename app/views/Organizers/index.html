@@ -1,0 +1,117 @@
+#{extends 'main.html' /}
+#{set title:'Organizador' /}
+#{set section:'Organizador' /}
+
+#{showTimer /}
+
+<div class="main-section">
+    <div id="timechooser">
+
+#{ifnot competition.startTime}
+    #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
+        #{field 'duracion'}
+        <label>Determinar duración del concurso</label>
+        <input type="text" name="${field.name}" id="timepicker" size="7" value="00:00:00" />
+        #{/}
+        <br />
+        <input type="submit" value="Iniciar Concurso" />
+    #{/form}
+#{/ifnot}
+#{elseif !(competition.endTime)}
+    #{form @Organizers.stopCompetition(concurso.id), method:'POST'}
+        <input type="submit" value="Parar Concurso" />
+    #{/form}
+#{/elseif}
+#{elseif competition.startTime && competition.endTime}
+        <p>El concurso ha terminado.</p>
+#{/elseif}
+
+    </div>
+</div>
+
+<div id="accordion">
+    <h3>
+        <a href="#tab1">
+        Informaci&oacute;n General
+        </a>
+    </h3>
+    <div>
+        <h2>Datos personales</h2>
+
+        <ul>
+            <li>Nombre:   ${ organizer.name_and_surname() }</li>
+            <li>Concurso: ${ competition }</li>
+        </ul>
+    </div>
+
+    <h3>
+        <a href="#tab2">
+        Administraci&oacute;n
+        </a>
+    </h3>
+    <div>
+
+        <table id="tab" border="1" class="ui-widget">
+            <thead class="ui-widget-header">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Equipo</th>
+                    <th>Bloquear submision</th>
+                </tr>
+            </thead>
+            <tbody class="ui-widget-content">
+                #{list items:participants, as:'participant'}
+                <tr>
+                    <td>${participant.id}</td>
+                    <td>${participant.name}</td>
+                    <td>${participant.surname}</td>
+                    <td>${participant.team}</td>
+                    <td>
+                    #{if participant.isBlocked() == false}
+                        #{a @Organizers.canSubmit(participant.id, false) }Bloquear#{/a}
+                    #{/if}
+                    #{else}
+                        #{a @Organizers.canSubmit(participant.id, true) }Desbloquear#{/a}
+                    #{/else}
+                    </td>
+
+                </tr>
+                #{/list}
+            </tbody>
+        </table>
+
+    </div>
+
+    <h3>
+        <a href="#tab3">
+        Resumen
+        </a>
+    </h3>
+
+    <div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#timepicker").timepicker({
+        timeOnlyTitle: 'Determinar duración',
+        timeText: 'Tiempo',
+        hourText: 'Horas',
+        minuteText: 'Minutos',
+        secondText: 'Segundos',
+        currentText: 'Tiempo actual',
+        closeText: 'OK',
+        timeFormat: 'hh:mm:ss',
+        showSecond: true
+    });
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#accordion').accordion();
+});
+</script>

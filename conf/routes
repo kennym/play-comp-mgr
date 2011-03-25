@@ -13,9 +13,9 @@ GET     /public/                                    staticDir:public
 GET     /concurso/{id}/duracion/?                   Competitions.duration
 
 # Participants
-GET     /participant/index/?                        Participants.index
-POST    /participant/{id}/trabajo/subir/?           Participants.submitWork
-GET     /participant/{id}/trabajo/ver/?             Participants.showWork
+GET     /participante/index/?                       Participants.index
+POST    /participante/{id}/trabajo/subir/?          Participants.submitWork
+GET     /participante/{id}/trabajo/ver/?            Participants.showWork
 
 # Organizers
 GET     /organizador/index/?                        Organizers.index
@@ -27,7 +27,7 @@ GET     /organizador/participante/{id}/can_submit/? Organizers.canSubmit
 GET     /jurado/index/?                             Judges.index
 GET     /jurado/evaluar/{id}/?                      Judges.evaluateWork
 
-# Catch all
+# Catch rest
 *       /{controller}/{action}                      {controller}.{action}
 
 

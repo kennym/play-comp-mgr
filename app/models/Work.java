@@ -20,6 +20,7 @@ public class Work extends Model {
     /**
      * El trabajo en forma de un objeto binario.
      */
+    @Lob
     public Blob blob;
 
     public long points;
