@@ -1,81 +1,79 @@
-ApplicationRole(administrador_rol):
-    nombre:         administrador
+ApplicationRole(administrator_role):
+    name:           administrador
 
-ApplicationRole(concursante):
-    nombre:         concursante
+ApplicationRole(participant_role):
+    name:           participant
 
-ApplicationRole(jurado):
-    nombre:         jurado
+ApplicationRole(judge_role):
+    name:           judge
 
-ApplicationRole(organizador_rol):
-    nombre:         organizador
+ApplicationRole(organizer_role):
+    name:           organizer
 
-Usuario(administrador):
+User(administrador):
     login:          admin
     password:       admin
-    rol:            administrador_rol
-# Test data:
+    role:           administrator_role
 
-Concurso(concurso1):
-    titulo:         Olimpiada de Programación
-    descripcion:    Concurso ejemplar.
+Competition(competition_1):
+    title:          Olimpiada de Programación
+    description:    Concurso ejemplar.
 
-Equipo(equipo1):
-    nombre:         Raul Peña
-    concurso:       concurso1
+Team(team_1):
+    name:           Raul Peña
+    competition:    competition_1
 
-Equipo(equipo2):
-    nombre:         Ciudad del Este
-    concurso:       concurso1
+Team(team_2):
+    name:           Ciudad del Este
+    competition:    competition_1
 
-Concursante(concursante1):
-    concurso:       concurso1
-    equipo:         equipo1
-    nombre:         Kenny
-    apellido:       Meyer
+Participant(participant_1):
+    competition:    competition_1
+    team:           team_1
+    name:           Kenny
+    surname:        Meyer
     login:          kenny
     password:       meyer
-    rol:            concursante
+    role:           participant_role
 
-Concursante(concursante2):
-    concurso:       concurso1
-    equipo:         equipo1
-    nombre:         Jorge
-    apellido:       Gimenez
+Participant(participant_2):
+    competition:    competition_1
+    name:           Jorge
+    surname:        Gimenez
     login:          jorge
     password:       gimenez
-    rol:            concursante
+    role:           participant_role
 
-Concursante(concursante3):
-    concurso:       concurso1
-    equipo:         equipo2
-    nombre:         Juancho
-    apellido:       El Pancho
+Participant(participant_3):
+    competition:    competition_1
+    team:           team_2
+    name:           Juancho
+    surname:        El Pancho
     login:          concursante3
     password:       concursante3
-    rol:            concursante
+    role:           participant_role
 
-Concursante(concursante4):
-    concurso:       concurso1
-    equipo:         equipo2
-    nombre:         Felix
-    apellido:       Fimelicks
+Participant(participant_4):
+    competition:    competition_1
+    team:           team_2
+    name:           Felix
+    surname:        Fimelicks
     login:          concursante4
     password:       concursante4
-    rol:            concursante
+    role:           participant_role
 
-Jurado(jurado1):
-    nombre:         Juancho
-    apellido:       Pancho
-    concurso:       concurso1
-    rol:            jurado
+Judge(judge_1):
+    name:           Juancho
+    surname:        Pancho
+    competition:    competition_1
     login:          juancho
     password:       pancho
+    role:           judge_role
 
-Organizador(organizador):
-    concurso:       concurso1
-    nombre:         El Gran
-    apellido:       Maestro
+Organizer(organizer_1):
+    competition:    competition_1
+    name:           El Gran
+    surname:        Maestro
     login:          organizador
     password:       organizador
-    rol:            organizador_rol
+    role:           organizer_role

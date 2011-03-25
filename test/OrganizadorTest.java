@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.*;
 
 import models.*;
-import controllers.*;
 
 public class OrganizadorTest extends UnitTest {
     @Test
@@ -20,22 +19,22 @@ public class OrganizadorTest extends UnitTest {
         assertNotNull(concurso);
 
         // Crear un organizador para este concurso
-        Organizer org = concurso.crearOrganizador("El Gran", "Maestro", "organizador", "organizador");
+        Organizer org = concurso.createOrganizer("El Gran", "Maestro", "organizador", "organizador");
         assertNotNull(org);
-        assertEquals(org.rol, ApplicationRole.getByName("organizador"));
+        assertEquals(org.role, ApplicationRole.getByName("organizador"));
 
         // Verificar que el concurso no se inició aún
-        assertEquals(concurso.tiempoInicial, null);
-        assertEquals(concurso.tiempoFinal, null);
+        assertEquals(concurso.startTime, null);
+        assertEquals(concurso.endTime, null);
 
         // Determinar duracion
         DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm");
         DateTime duracion = dtf.parseDateTime("00:05"); // 5 minutos
 
-        concurso.iniciar(duracion);
-        assertNotNull(concurso.tiempoInicial);
+        concurso.start(duracion);
+        assertNotNull(concurso.startTime);
 
-        concurso.parar();
-        assertNotNull(concurso.tiempoFinal);
+        concurso.stop();
+        assertNotNull(concurso.endTime);
     }
 }
