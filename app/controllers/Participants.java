@@ -54,7 +54,7 @@ public class Participants extends Application {
         Participants.index();
     }
 
-    public static void mostrarTrabajo(Long id) {
+    public static void showWork(Long id) {
         // Obtener concursante de la base de datos
         Participant participant = Participant.findById(id);
 

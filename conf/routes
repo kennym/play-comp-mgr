@@ -8,26 +8,28 @@ GET     /                                           Application.index
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                    staticDir:public
 
-# Concursos
-GET     /concurso/{id}/duracion/?                   Concursos.duracion
+## Spanish routes ##############################################################
+# Competition
+GET     /concurso/{id}/duracion/?                   Competitions.duration
 
-# Concursantes
-GET     /concursante/index/?                        Concursantes.index
-POST    /concursantes/{id}/trabajo/subir/?          Concursantes.subirTrabajo
-GET     /concursantes/{id}/trabajo/ver/?            Concursantes.mostrarTrabajo
+# Participants
+GET     /participant/index/?                        Participants.index
+POST    /participant/{id}/trabajo/subir/?           Participants.submitWork
+GET     /participant/{id}/trabajo/ver/?             Participants.showWork
 
-# Organizadores
-GET     /organizadores/index/?                      Organizadores.index
-POST    /organizadores/concurso/{id}/iniciar/?      Organizadores.iniciarConcurso
-POST    /organizadores/concurso/{id}/parar/?        Organizadores.pararConcurso
-GET     /organizadores/concursante/{id}/can_submit/? Organizadores.canSubmit
+# Organizers
+GET     /organizador/index/?                        Organizers.index
+POST    /organizador/concurso/{id}/iniciar/?        Organizers.startCompetition
+POST    /organizador/concurso/{id}/parar/?          Organizers.stopCompetition
+GET     /organizador/participante/{id}/can_submit/? Organizers.canSubmit
 
-# Jurados
-GET     /jurados/index/?                            Jurados.index
-GET     /jurados/evaluar/{id}/?                     Jurados.evaluarConcursante
+# Judges
+GET     /jurado/index/?                             Judges.index
+GET     /jurado/evaluar/{id}/?                      Judges.evaluateWork
 
 # Catch all
 *       /{controller}/{action}                      {controller}.{action}
+
 
 # Import CRUD routes
 GET     /admin/?                                    Admin.index
