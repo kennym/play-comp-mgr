@@ -1,7 +1,7 @@
 /** Main layout **/
 
 html, body {
-    background: #364B66 !important;
+    background: #CACACA !important;
     font-family: Helvetica, Arial, Sans !important;
 }
 
@@ -95,7 +95,7 @@ body {
 
 #main {
     background: #314660;
-    background: -webkit-gradient(linear, left top, left 30%, from(#314660), to(#364B66));
+    background: -webkit-gradient(linear, left top, left 30%, from(#314660), to(#CACACA));
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
     padding: 20px;
@@ -238,7 +238,7 @@ form label {
     display: block;
     font-weight: bold;
     font-size: 90%;
-    color: #aaa;
+    margin-top: 10px;
     margin-bottom: 3px;
 }
 
@@ -271,11 +271,11 @@ form label {
 /** Footer **/
 
 #footer {
-    border-top: 1px solid #45597A;
+    border-top: 1px solid #334861;
     font-size: 70%;
     padding: 10px 30px;
     text-align: center;
-    color: #869AB1;
+    color: #334861;
     margin-top: 30px;
 }
 

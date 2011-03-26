@@ -9,6 +9,6 @@ import play.mvc.*;
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @With(Secure.class)
-public class Usuarios extends CRUD {
+public class Users extends CRUD {
 
 }

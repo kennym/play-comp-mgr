@@ -4,49 +4,53 @@
 
 #{showTimer /}
 
-<div class="main-section">
-    <div id="timechooser">
-
-#{ifnot competition.startTime}
-    #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
-        #{field 'duracion'}
-        <label>Determinar duración del concurso</label>
-        <input type="text" name="${field.name}" id="timepicker" size="7" value="00:00:00" />
-        #{/}
-        <br />
-        <input type="submit" value="Iniciar Concurso" />
-    #{/form}
-#{/ifnot}
-#{elseif !(competition.endTime)}
-    #{form @Organizers.stopCompetition(concurso.id), method:'POST'}
-        <input type="submit" value="Parar Concurso" />
-    #{/form}
-#{/elseif}
-#{elseif competition.startTime && competition.endTime}
-        <p>El concurso ha terminado.</p>
-#{/elseif}
-
-    </div>
-</div>
-
 <div id="accordion">
     <h3>
         <a href="#tab1">
-        Informaci&oacute;n General
+            Administrar Concurso
         </a>
     </h3>
     <div>
-        <h2>Datos personales</h2>
+        <div id="timechooser">
 
-        <ul>
-            <li>Nombre:   ${ organizer.name_and_surname() }</li>
-            <li>Concurso: ${ competition }</li>
-        </ul>
+    #{ifnot competition.startTime}
+        #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
+            #{field 'duration'}
+            <label>Establecer duración del concurso</label>
+            <input type="text" name="${field.name}" id="timepicker" size="10" value="${field.value}" />
+            #{/field}
+
+            <label>Elegir el problema</label>
+        #{ifnot problems}
+            <p>Se debe crear problemas primeramente!</p>
+        #{/ifnot}
+        #{else}
+            #{field 'problem'}
+                #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, id:"problem-select" /}
+            #{/}
+            <br />
+            <textarea id="problem-description"></textarea>
+        #{/else}
+
+            <br />
+            <input type="submit" value="Iniciar Concurso" />
+        #{/form}
+    #{/ifnot}
+    #{elseif !(competition.endTime)}
+        #{form @Organizers.stopCompetition(competition.id), method:'POST'}
+            <input type="submit" value="Parar Concurso" />
+        #{/form}
+    #{/elseif}
+    #{elseif competition.startTime && competition.endTime}
+            <p>El concurso ha terminado.</p>
+    #{/elseif}
+
+        </div>
     </div>
 
     <h3>
         <a href="#tab2">
-        Administraci&oacute;n
+            Administrar Participantes
         </a>
     </h3>
     <div>
@@ -54,7 +58,7 @@
         <table id="tab" border="1" class="ui-widget">
             <thead class="ui-widget-header">
                 <tr>
-                    <th>Id</th>
+                    <th>#</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Equipo</th>
@@ -64,7 +68,7 @@
             <tbody class="ui-widget-content">
                 #{list items:participants, as:'participant'}
                 <tr>
-                    <td>${participant.id}</td>
+                    <td>${participant_index}</td>
                     <td>${participant.name}</td>
                     <td>${participant.surname}</td>
                     <td>${participant.team}</td>
@@ -81,16 +85,18 @@
                 #{/list}
             </tbody>
         </table>
-
     </div>
 
     <h3>
-        <a href="#tab3">
-        Resumen
+        <a href="#tab4">
+            Datos personales
         </a>
     </h3>
-
     <div>
+        <ul>
+            <li>Nombre:   ${ organizer.name_and_surname() }</li>
+            <li>Concurso: ${ competition }</li>
+        </ul>
 
     </div>
 </div>
@@ -111,7 +117,15 @@
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$('#accordion').accordion();
-});
+    $(document).ready(function(){
+        $('#accordion').accordion();
+    });
+
+    $(document).ready(function() {
+        $("select#problem-select").change(function() {
+            $.getJSON("@{Problems.getDescription()}", {id: $(this).val()}, function(data) {
+                $("#problem-description").text(data);
+            })
+        })
+    });
 </script>

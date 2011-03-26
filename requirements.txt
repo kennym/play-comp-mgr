@@ -1,0 +1,8 @@
+[1.0]
+ - [x] Timer to end competition and block submissions
+ - [ ] Punctuation system
+ - [ ] Add problems
+  - [ ] Permit organizer to add, choose, delete problems
+  - [ ] Add template tag for problems to include for Competitors, Jury and Organizers.
+ - [ ] View for visitor/spectator
+ - [ ] Finish off role authentication for all controllers.

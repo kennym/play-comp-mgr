@@ -7,6 +7,6 @@ package controllers;
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
-public class Equipos extends Application {
+public class Teams extends Application {
 
 }

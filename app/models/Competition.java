@@ -47,6 +47,9 @@ public class Competition extends Model {
     @OneToMany(cascade=CascadeType.PERSIST)
     public List<Judge> judges;
 
+    @ManyToOne
+    public Problem problem;
+
     public Competition(String title,
                        String description,
                        Date startTime,
@@ -62,6 +65,8 @@ public class Competition extends Model {
     public void start(DateTime duration) {
         this.duration = duration;
         this.startTime = new Date();
+
+        assert this.problem != null;
 
         save();
     }
@@ -151,6 +156,12 @@ public class Competition extends Model {
         this.refresh();
 
         return participant;
+    }
+
+    public void setProblem(long id) {
+        this.problem = Problem.findById(id);
+
+        save();
     }
 
     public String toString() {

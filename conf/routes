@@ -27,6 +27,9 @@ GET     /organizador/participante/{id}/can_submit/? Organizers.canSubmit
 GET     /jurado/index/?                             Judges.index
 GET     /jurado/evaluar/{id}/?                      Judges.evaluateWork
 
+# Problems
+GET     /problem/description/?                      Problems.getDescription
+
 # Catch rest
 *       /{controller}/{action}                      {controller}.{action}
 

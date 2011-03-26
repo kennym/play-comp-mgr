@@ -35,19 +35,24 @@ public class Organizers extends Application {
         Competition competition = organizer.competition;
         List<Participant> participants = Participant.find(
                 "byCompetitionLike", competition).fetch();
+        List<Problem> problems = Problem.all().fetch();
 
-        render(organizer, competition, participants);
+        render(organizer, competition, participants, problems);
     }
 
-    public static void startCompetition(Long id, String duration) {
+    public static void startCompetition(Long id, String duration, Long problem) {
         validation.required(id);
         validation.required(duration);
-        validation.isTrue(duration);
+        validation.required(problem);
 
         Competition competition = Competition.findById(id);
 
+        // Parse datetime
         DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm:ss");
         DateTime durationDateTime = dtf.parseDateTime(duration);
+
+        // Set problem
+        competition.setProblem(problem);
 
         competition.start(durationDateTime);
 

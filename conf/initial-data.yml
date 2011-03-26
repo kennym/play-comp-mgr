@@ -38,6 +38,7 @@ Participant(participant_1):
 
 Participant(participant_2):
     competition:    competition_1
+    team:           team_1
     name:           Jorge
     surname:        Gimenez
     login:          jorge
@@ -77,3 +78,11 @@ Organizer(organizer_1):
     login:          organizador
     password:       organizador
     role:           organizer_role
+
+Problem(problem_1):
+    title:          Numeros primos
+    description:    Debe escribir un programa que retorne todos los numeros primos entre 1 y 500
+
+Problem(problem_2):
+    title:          Factorial
+    description:    Hallar el factorial de un numero

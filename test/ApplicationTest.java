@@ -9,14 +9,8 @@ import models.*;
 public class ApplicationTest extends FunctionalTest {
 
     @Test
-    public void blockAnonymousAccess() {
-        Response response = GET("/organizadores/index");
-        assertStatus(403, response);
+    public void redirectAnonymousAccess() {
+        Response response = GET("/organizador/index");
+        assertStatus(302, response);
     }
-
-    @Test
-    public void autorizarAccessoDeOrganizador() {
-        fail();
-    }
-
 }
