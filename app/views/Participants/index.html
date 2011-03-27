@@ -3,23 +3,13 @@
 #{set section:'Concursante' /}
 #{set subsection:participant.name + ' ' + participant.surname /}
 
-    #{showTimer /}
-
-<div class="main-section">
-    <h2>
-    #{if !(competition.startTime)}
-        El concurso no ha empezado aún.
-    #{/if}
-    #{else}
-        El concurso está en progreso.
-    #{/else}
-    </h2>
-</div>
+#{showTimer competition:competition /}
 
 <div id="accordion">
     <h3><a href="#tab1">Informaci&oacute;n General</a></h3>
     <div>
         <h3>Anunciado del problema</h3>
+        <p>${problem?.description }</p>
     </div>
 
     <h3><a href="#tab2">Subir trabajo</a></h3>

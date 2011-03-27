@@ -29,8 +29,9 @@ public class Participants extends Application {
         Competition competition = participant.competition;
         List<Participant> participants = Participant.find("byCompetitionLike", competition).fetch();
         String team = participant.team.toString();
+        Problem problem = competition.problem;
 
-        render(participant, participants, competition, team);
+        render(participant, participants, competition, team, problem);
     }
 
     public static void submitWork(Long id, Blob work) {

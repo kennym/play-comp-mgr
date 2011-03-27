@@ -33,4 +33,8 @@ public class Problem extends Model {
 
         create();
     }
+
+    public String toString() {
+        return this.title;
+    }
 }

@@ -72,7 +72,7 @@ public class Competition extends Model {
     }
 
     public void stop() {
-        this.endTime = new Date(new Date().getTime());
+        this.endTime = new Date();
 
         save();
     }
@@ -81,6 +81,23 @@ public class Competition extends Model {
         for(Participant participant: this.participants) {
             participant.canSubmit(false);
         }
+    }
+
+    public void setProblem(long id) {
+        this.problem = Problem.findById(id);
+
+        save();
+    }
+
+    public long getRemainingSeconds() {
+        DateTime startTime = new DateTime(this.startTime);
+        DateTime endTime = startTime.plusHours(this.duration.getHourOfDay());
+        endTime = startTime.plusMinutes(this.duration.getMinuteOfDay());
+        endTime = startTime.plusSeconds(this.duration.getSecondOfDay());
+
+        Duration restTime = new Duration(new DateTime(), endTime);
+
+        return restTime.getStandardSeconds();
     }
 
     /**
@@ -156,12 +173,6 @@ public class Competition extends Model {
         this.refresh();
 
         return participant;
-    }
-
-    public void setProblem(long id) {
-        this.problem = Problem.findById(id);
-
-        save();
     }
 
     public String toString() {

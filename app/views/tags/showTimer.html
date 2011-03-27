@@ -1,15 +1,23 @@
 <div id="timer">
-    <div id="time">
-        #{if _date != null}
-        <h2>Tiempo restante</h2>
-        <p id="countdown"></p>
-        <br/>
-        #{/if}
-    </div>
+    #{if !(_competition.startTime)}
+    <h2>
+        El concurso no ha empezado aún.
+    </h2>
+    #{/if}
+    #{else}
+    <h2>
+        El concurso está en progreso.
+    </h2>
+
+    <h3>Tiempo restante</h3>
+    <p id="countdown"></p>
+
+    #{/else}
 </div>
 
+
 <script type="text/javascript">
-    #{if _date != null}
-    $('#countdown').countdown({until: +${_date}, format:'Hms' });
+    #{if _competition.duration != null}
+    $('#countdown').countdown({until: +${_competition.getRemainingSeconds()}, format:'Hms' });
     #{/if}
 </script>
