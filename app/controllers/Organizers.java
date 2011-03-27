@@ -10,7 +10,7 @@ import models.*;
 /**
  * Organizadores
  *
- * El controller para Organizer()
+ * El controller para Organizer().
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
@@ -20,8 +20,9 @@ public class Organizers extends Application {
         User user = connected();
 
         try {
-            if (user.role != ApplicationRole.getByName("organizer"))
+            if (user.role != ApplicationRole.getByName("organizer")) {
                 forbidden("No eres un organizador.");
+            }
         } catch (NullPointerException e) {
             try {
                 Secure.login();
@@ -40,10 +41,26 @@ public class Organizers extends Application {
         render(organizer, competition, participants, problems);
     }
 
-    public static void startCompetition(Long id, String duration, Long problem) {
+    /**
+     * Begin the competition given the ID, the duration and the problem.
+     *
+     * @param id the ID of the competition
+     * @param duration the duration of the competition
+     * @param problem the ID of the problem for the competition
+     */
+    public static void startCompetition(final Long id,
+                                        final String duration,
+                                        final Long problem) {
         validation.required(id);
         validation.required(duration);
+        // Duration should be formatted HH:mm:ss, but not 00:00:00
+        validation.match(duration, "^[0-9]{2}:[0-9]{2}:[0-9]{2}$");
         validation.required(problem);
+        if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+            Organizers.index();
+        }
 
         Competition competition = Competition.findById(id);
 

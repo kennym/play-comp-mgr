@@ -14,6 +14,16 @@
         <div id="timechooser">
 
     #{ifnot competition.startTime}
+        #{ifErrors}
+        <div class="ui-state-error">
+            <h1>Oops…</h1>
+
+            #{errors}
+                <li>${error}</li>
+            #{/errors}
+        </div>
+        #{/ifErrors}
+
         #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
             #{field 'duration'}
             <h4>Duración del concurso</h4>
