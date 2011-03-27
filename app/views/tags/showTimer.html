@@ -1,23 +1,38 @@
 <div id="timer">
     #{if !(_competition.startTime)}
-    <h2>
+    <h2 id="timer-header">
         El concurso no ha empezado aún.
     </h2>
     #{/if}
-    #{else}
-    <h2>
+    #{elseif _competition.startTime && !(_competition.endTime) }
+    <h2 id="timer-header">
         El concurso está en progreso.
     </h2>
 
     <h3>Tiempo restante</h3>
     <p id="countdown"></p>
 
+    #{/elseif}
+    #{else}
+    <h2 id="timer-header">
+        El concurso ha terminado
+    </h2>
     #{/else}
+
 </div>
 
 
 <script type="text/javascript">
     #{if _competition.duration != null}
-    $('#countdown').countdown({until: +${_competition.getRemainingSeconds()}, format:'Hms' });
+    $('#countdown').countdown({
+        until: +${_competition.getRemainingSeconds()},
+        format:'Hms',
+        onExpiry: competitionEnded
+    });
     #{/if}
+
+    function competitionEnded() {
+        $('#timer-header').text('El concurso ha terminado');
+        $('p#countdown').remove();
+    }
 </script>
