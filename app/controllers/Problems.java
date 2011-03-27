@@ -19,6 +19,11 @@ public class Problems extends Application {
         Problem problem = Problem.findById(id);
         String description = problem.description;
 
-        renderJSON(description);
+        renderText(description);
+    }
+
+    public static void create() {
+
+        render();
     }
 }

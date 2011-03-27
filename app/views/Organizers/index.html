@@ -16,11 +16,11 @@
     #{ifnot competition.startTime}
         #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
             #{field 'duration'}
-            <label>Establecer duración del concurso</label>
-            <input type="text" name="${field.name}" id="timepicker" size="10" value="${field.value}" />
+            <h4>Duración del concurso</h4>
+            <input type="text" name="${field.name}" id="timepicker" size="10" value="00:00:00" />
             #{/field}
 
-            <label>Elegir el problema</label>
+            <h4>Problemas</h4>
         #{ifnot problems}
             <p>Se debe crear problemas primeramente!</p>
         #{/ifnot}
@@ -28,8 +28,11 @@
             #{field 'problem'}
                 #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, id:"problem-select" /}
             #{/}
-            <br />
-            <textarea id="problem-description"></textarea>
+            <button id="create-problem">Crear un nuevo problema</button>
+            <textarea id="problem-description" cols="80" rows="5" readonly>Descripcion del problema...</textarea>
+            <p>
+                <a href="">Agregar mas problemas a este concurso</a>
+            </p>
         #{/else}
 
             <br />
@@ -101,31 +104,39 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $("#timepicker").timepicker({
-        timeOnlyTitle: 'Determinar duración',
-        timeText: 'Tiempo',
-        hourText: 'Horas',
-        minuteText: 'Minutos',
-        secondText: 'Segundos',
-        currentText: 'Tiempo actual',
-        closeText: 'OK',
-        timeFormat: 'hh:mm:ss',
-        showSecond: true
-    });
-
-</script>
-
+#{set 'moreScripts'}
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#timepicker").timepicker({
+            timeOnlyTitle: 'Determinar duración',
+            timeText: 'Tiempo',
+            hourText: 'Horas',
+            minuteText: 'Minutos',
+            secondText: 'Segundos',
+            currentText: 'Tiempo actual',
+            closeText: 'OK',
+            timeFormat: 'hh:mm:ss',
+            showSecond: true
+        });
+
+
+        // Callback for showing problem description in textarea when clicking the problem
+        var jqhxr = $("#problem-select").live("change", function() {
+            var getDescription = #{jsAction @Problems.getDescription(':id') /}
+            jQuery.get(getDescription({id: $(this).val()}), function(data) {
+                $('#problem-description').text(data);
+            })
+        });
+
+        // Make the accordion
         $('#accordion').accordion();
     });
 
-    $(document).ready(function() {
-        $("select#problem-select").change(function() {
-            $.getJSON("@{Problems.getDescription()}", {id: $(this).val()}, function(data) {
-                $("#problem-description").text(data);
-            })
-        })
-    });
+    // Catch Ajax Errors
+    $.ajaxSetup({"error":function(XMLHttpRequest,textStatus, errorThrown) {
+        alert(textStatus);
+        alert(errorThrown);
+        alert(XMLHttpRequest.responseText);
+    }});
 </script>
+#{/set}
