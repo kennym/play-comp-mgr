@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1291" measuredH="1353" mockupW="1231" mockupH="1333">
+<mockup version="1.0" skin="sketch" measuredW="1291" measuredH="1420" mockupW="1231" mockupH="1400">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="60" y="20" w="619" h="605" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
@@ -77,14 +77,9 @@
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="702" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
-      <controlProperties>
-        <selectedIndex>0</selectedIndex>
-        <text>General%0AAdministraci%F3n%0AResumen</text>
-        <verticalScrollbar>false</verticalScrollbar>
-      </controlProperties>
-    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="769" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
     <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="130" y="740" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="137" y="737" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>HH%3Amm%3Ass</text>
@@ -100,7 +95,7 @@
         <text>Problemas</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Button" x="127" y="1226" w="478" h="55" measuredW="74" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Button" x="127" y="1290" w="478" h="55" measuredW="74" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Dale%20ya%21</text>
       </controlProperties>
@@ -111,16 +106,16 @@
         <text>%23%2C%20Nombre%2C%20Apellido%2C%20Equipo%2C%20Bloquear%20subida%0A1%2C%20Ricky%2C%20Rick%2C%20Raul%20Pe%F1a%2C%20Desbloqueado%0A2%2C%20Alfredo%2C%20Gimenez%2C%20Raul%20Pe%F1a%2C%20Bloqueado%0A3%2C%20Freddy%2C%20Buller%2C%20Ciudad%20del%20Este%2C%20Desbloqueado%0A4%2C%20Freddy%2C%20The%20Loco%2C%20Encarnaci%F3n%2C%20Desbloqueado</text>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::ComboBox" x="127" y="850" w="226" h="-1" measuredW="112" measuredH="112" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::ComboBox" x="129" y="857" w="226" h="-1" measuredW="112" measuredH="112" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>EmoticonIcon%7Csmall</icon>
         <text>Elegir...%0AHallar%20factorial%0AEncontrar%20numero%20primos%0AHallar%20diferencia%20entre%20dos%20numeros%0Aetc.</text>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="__group__" x="378" y="850" w="227" h="112" measuredW="227" measuredH="112" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="42" controlTypeID="__group__" x="363" y="857" w="227" h="112" measuredW="227" measuredH="112" zOrder="18" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="227" h="112" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="41"/>
-        <control controlID="1" controlTypeID="com.balsamiq.mockups::Paragraph" x="10" y="9" w="206" h="93" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="41">
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="227" h="112" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="42"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Paragraph" x="10" y="9" w="206" h="93" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="42">
           <controlProperties>
             <size>10</size>
             <text>Hallar%20el%20factorial%20de%20un%20numero%20positivo%20entero......</text>
@@ -128,14 +123,52 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::Link" x="127" y="821" w="-1" h="-1" measuredW="160" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="129" y="821" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Crear%20un%20nuevo%20problema</text>
+        <text>Problema%20%231</text>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Link" x="127" y="971" w="-1" h="-1" measuredW="204" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::ComboBox" x="127" y="1020" w="226" h="-1" measuredW="112" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>A%F1adir%20m%E1s%20para%20este%20concurso%20</text>
+        <icon>EmoticonIcon%7Csmall</icon>
+        <state>closed</state>
+        <text>Elegir...%0AHallar%20factorial%0AEncontrar%20numero%20primos%0AHallar%20diferencia%20entre%20dos%20numeros%0Aetc.</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="127" y="984" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Problema%20%232</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Canvas" x="361" y="1020" w="227" h="40" measuredW="100" measuredH="70" zOrder="21" locked="false" isInGroup="-1"/>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Paragraph" x="371" y="1029" w="206" h="31" measuredW="200" measuredH="140" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>10</size>
+        <text>...</text>
+      </controlProperties>
+    </control>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::ComboBox" x="127" y="1091" w="226" h="-1" measuredW="112" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>EmoticonIcon%7Csmall</icon>
+        <state>closed</state>
+        <text>Elegir...%0AHallar%20factorial%0AEncontrar%20numero%20primos%0AHallar%20diferencia%20entre%20dos%20numeros%0Aetc.</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Canvas" x="361" y="1091" w="227" h="40" measuredW="100" measuredH="70" zOrder="25" locked="false" isInGroup="-1"/>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Paragraph" x="371" y="1100" w="206" h="31" measuredW="200" measuredH="140" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>10</size>
+        <text>...</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="127" y="1066" w="-1" h="-1" measuredW="97" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Problema%20%23xyz</text>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Link" x="127" y="1157" w="-1" h="-1" measuredW="144" measuredH="25" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Agregar%20otro%20problema</text>
       </controlProperties>
     </control>
   </controls>
