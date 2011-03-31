@@ -28,15 +28,18 @@ public class Participants extends Application {
 
         Competition competition = participant.competition;
         List<Participant> participants = Participant.find("byCompetitionLike", competition).fetch();
+        List<Problem> problems = competition.problems;
         String team = participant.team.toString();
-        Problem problem = competition.problem;
 
-        render(participant, participants, competition, team, problem);
+        render(participant, participants, competition, team, problems);
     }
 
-    public static void submitWork(Long id, Blob work) {
-        // Obtener concursante de la base de datos
-        Participant participant = Participant.findById(id);
+    public static void submitWork(Long participant_id,
+                                  Long problem_id,
+                                  Blob work) {
+        // Get the participant and the problem from the database.
+        Participant participant = Participant.findById(participant_id);
+        Problem problem = Problem.findById(problem_id);
 
         // Verificar que el usuario puede subir su trabajo y que el concurso
         // está en progreso.
@@ -49,20 +52,19 @@ public class Participants extends Application {
         }
 
         // Actualizar el trabajo
-        participant.createWork(work);
+        participant.submitSolution(problem, work);
 
         // Volver al índice
         Participants.index();
     }
 
-    public static void showWork(Long id) {
-        // Obtener concursante de la base de datos
-        Participant participant = Participant.findById(id);
+    public static void showSolution(Long solution_id) {
+        Solution solution = Solution.findById(solution_id);
 
-        // Rendir la URI del trabajo si existe.
-        if (participant.work != null && participant.work != null) {
-            response.contentType = participant.work.file.type();
-            renderBinary(participant.work.file.get(), participant.work.file.length());
+        // Render the solution blob if available
+        if (solution != null && solution.exists()) {
+            response.contentType = solution.blob.type();
+            renderBinary(solution.blob.get(), solution.blob.length());
         } else {
             notFound();
         }

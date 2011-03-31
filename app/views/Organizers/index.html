@@ -6,7 +6,7 @@
 
 <div id="accordion">
     <h3>
-        <a href="#tab1">
+        <a name="#tab1">
             Administrar Concurso
         </a>
     </h3>
@@ -24,24 +24,31 @@
         </div>
         #{/ifErrors}
 
-        #{form @Organizers.startCompetition(competition.id), method:'POST', id:'timechooser-form'}
+        #{form @Organizers.startCompetition(competition.id), method:'POST', id:'competition-form'}
             #{field 'duration'}
             <h4>Duración del concurso</h4>
             <input type="text" name="${field.name}" id="timepicker" size="10" value="00:00:00" />
             #{/field}
 
             <h4>Problemas</h4>
+            <p>Define aqui los problemas que cada participante debe completar
+                en el tiempo establecido
+            </p>
+            <hr />
         #{ifnot problems}
             <p>Se debe crear problemas primeramente!</p>
         #{/ifnot}
         #{else}
-            #{field 'problem'}
-                #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, id:"problem-select" /}
-            #{/}
-            <button id="create-problem">Crear un nuevo problema</button>
-            <textarea id="problem-description" cols="80" rows="5" readonly>Descripcion del problema...</textarea>
+            <div class="problem-field">
+                #{field 'problem'}
+                    #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, class:"problem-select" /}
+                    <span class="problem-description" >Descripcion del problema...</span>
+                #{/}
+            </div>
+
             <p>
-                <a href="">Agregar mas problemas a este concurso</a>
+                <a id="add-problem" href="">Agregar problema...</a>
+                <a id="remove-problem" href="">Borrar problema...</a>
             </p>
         #{/else}
 
@@ -62,7 +69,7 @@
     </div>
 
     <h3>
-        <a href="#tab2">
+        <a name="#tab2">
             Administrar Participantes
         </a>
     </h3>
@@ -101,7 +108,7 @@
     </div>
 
     <h3>
-        <a href="#tab4">
+        <a name="#tab3">
             Datos personales
         </a>
     </h3>
@@ -129,17 +136,23 @@
             showSecond: true
         });
 
-
         // Callback for showing problem description in textarea when clicking the problem
-        var jqhxr = $("#problem-select").live("change", function() {
+        var jqhxr = $(".problem-select").live("change", function() {
             var getDescription = #{jsAction @Problems.getDescription(':id') /}
             jQuery.get(getDescription({id: $(this).val()}), function(data) {
-                $('#problem-description').text(data);
-            })
+                $('.problem-description').text(data);
+            });
         });
 
         // Make the accordion
         $('#accordion').accordion();
+
+        // Make the form dynamic
+        $(".problem-field").dynamicForm("#add-problem", "#remove-problem", {
+            limit:5,
+            createColor:'yellow',
+            removeColor:'red'
+        });
     });
 
     // Catch Ajax Errors

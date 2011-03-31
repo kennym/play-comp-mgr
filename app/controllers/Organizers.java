@@ -40,20 +40,21 @@ public class Organizers extends Application {
     }
 
     /**
-     * Begin the competition given the ID, the duration and the problem.
+     * Begin the competition given the ID and the duration.
      *
      * @param id the ID of the competition
      * @param duration the duration of the competition
-     * @param problem the ID of the problem for the competition
      */
     public static void startCompetition(final Long id,
                                         final String duration,
-                                        final Long problem) {
+                                        final List<Long> problem_ids) {
         validation.required(id);
         validation.required(duration);
+        validation.required(problem_ids);
+        System.out.println(problem_ids);
+        System.out.println(params.toString());
         // Duration should be formatted HH:mm:ss, but not 00:00:00
         validation.match(duration, "^[0-9]{2}:[0-9]{2}:[0-9]{2}$");
-        validation.required(problem);
         if (validation.hasErrors()) {
             params.flash();
             validation.keep();
@@ -65,9 +66,6 @@ public class Organizers extends Application {
         // Parse datetime
         DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm:ss");
         DateTime durationDateTime = dtf.parseDateTime(duration);
-
-        // Set problem
-        competition.setProblem(problem);
 
         competition.start(durationDateTime);
 
