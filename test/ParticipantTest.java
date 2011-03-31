@@ -1,5 +1,7 @@
 import org.junit.*;
 
+import java.util.List;
+
 import play.test.*;
 import play.mvc.Http.*;
 import play.db.jpa.Blob;
@@ -25,10 +27,13 @@ public class ParticipantTest extends UnitTest {
         // Crear concursantes para equipo1
         Participant concursante1 = concurso.createParticipant(equipo1, "Kenny", "Meyer", "kenny", "meyer");
 
-        // Crear trabajo para concursante 1
-        Blob file = new Blob();
-        Work work = new Work(concursante1, file);
-        assertNotNull(work.participant);
-        assertNotNull(work.file);
+       // Obtener los problemas
+        List<Problem> problems = Problem.all().fetch();
+        assertNotNull(problems);
+
+        // Participant creates a solution for problem #1
+        concursante1.submitSolution(problems.get(0), new Blob());
+        assertNotNull(concursante1.solutions.get(0).blob);
+        assertNotNull(concursante1.solutions.get(0).problem);
     }
 }

@@ -14,8 +14,8 @@ GET     /concurso/{id}/duracion/?                   Competitions.duration
 
 # Participants
 GET     /participante/index/?                       Participants.index
-POST    /participante/{id}/trabajo/subir/?          Participants.submitWork
-GET     /participante/{id}/trabajo/ver/?            Participants.showWork
+POST    /participante/{id}/solucion/subir/?          Participants.submitSolution
+GET     /participante/{id}/solucion/ver/?            Participants.showSolution
 
 # Organizers
 GET     /organizador/index/?                        Organizers.index
