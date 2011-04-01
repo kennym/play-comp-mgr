@@ -1,5 +1,6 @@
 package models;
 
+import java.util.List;
 import javax.persistence.*;
 
 import play.db.jpa.*;
@@ -30,7 +31,11 @@ public class Participant extends User {
 
     public boolean canSubmitWork;
 
-    public Work work;
+    /**
+     * One solution for each problem.
+     */
+    @OneToMany
+    public List<Solution> solutions;
 
     public Participant(Competition competition,
                        Team team,
@@ -50,8 +55,8 @@ public class Participant extends User {
         create();
     }
 
-    public Work createWork(Blob solution) {
-        Work work = new Work(this, solution);
+    public void submitSolution(Problem problem, Blob blob) {
+        solutions.add(0, new Solution(this, problem, blob));
 
         this.refresh();
 
@@ -74,13 +79,8 @@ public class Participant extends User {
      * @return long
      */
     public long getPoints() {
+        // TODO
         long points = 0;
-
-//        try {
-//            points = this.work.points;
-//        } catch (NullPointerException e) {
-//            points = 0;
-//        }
 
         return points;
     }

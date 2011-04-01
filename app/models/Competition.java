@@ -47,8 +47,12 @@ public class Competition extends Model {
     @OneToMany(cascade=CascadeType.PERSIST)
     public List<Judge> judges;
 
-    @ManyToOne
-    public Problem problem;
+    /**
+     * A competition can have many problems, and problems can be assigned
+     * to more than one competition.
+     */
+    @ManyToMany
+    public List<Problem> problems;
 
     public Competition(String title,
                        String description,
@@ -66,7 +70,7 @@ public class Competition extends Model {
         this.duration = duration;
         this.startTime = new Date();
 
-        assert this.problem != null;
+        assert this.problems != null;
 
         save();
     }
@@ -81,12 +85,6 @@ public class Competition extends Model {
         for(Participant participant: this.participants) {
             participant.canSubmit(false);
         }
-    }
-
-    public void setProblem(long id) {
-        this.problem = Problem.findById(id);
-
-        save();
     }
 
     public long getRemainingSeconds() {

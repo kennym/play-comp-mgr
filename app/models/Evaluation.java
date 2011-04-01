@@ -21,7 +21,7 @@ import play.data.validation.*;
  */
 @Entity
 public class Evaluation extends Model {
-    public Work work;
+    public Solution work;
     public Judge jury;
 
     // Indicators
@@ -29,7 +29,7 @@ public class Evaluation extends Model {
     public boolean returnsCorrectResult;
 
     // Methods, and all that stuff
-    public Evaluation (Work work, Judge jury) {
+    public Evaluation (Solution work, Judge jury) {
         this.work = work;
         this.jury = jury;
 
