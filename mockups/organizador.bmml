@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1291" measuredH="1106" mockupW="1231" mockupH="1086">
+<mockup version="1.0" skin="sketch" measuredW="1291" measuredH="1353" mockupW="1231" mockupH="1333">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="60" y="20" w="619" h="605" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
@@ -16,10 +16,10 @@
         <text>Nombre</text>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="215" w="518" h="93" measuredW="150" measuredH="250" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="215" w="518" h="93" measuredW="171" measuredH="207" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>-1</selectedIndex>
-        <text>General%0AAdministraci%F3n%0AResumen%0ADatos%20personales</text>
+        <text>Administrar%20Concurso%0AAdministrar%20Participantes%0ADatos%20personales</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
@@ -31,10 +31,10 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Accordion" x="773" y="521" w="518" h="239" measuredW="150" measuredH="207" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Accordion" x="773" y="521" w="518" h="181" measuredW="150" measuredH="121" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>2</selectedIndex>
-        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <text>Resumen</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
@@ -55,7 +55,7 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="773" y="610" w="518" h="150" measuredW="374" measuredH="148" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="773" y="552" w="518" h="150" measuredW="374" measuredH="148" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <markup>true</markup>
         <selectedIndex>0</selectedIndex>
@@ -67,40 +67,40 @@
         <borderStyle>square</borderStyle>
         <hasHeader>true</hasHeader>
         <selectedIndex>-1</selectedIndex>
-        <text>Funciones%20del%20Organizador%0A-%20Empezar%20concurso%0A%20-%20Determinar%20duracion%0A%20-%20Determinar%20problema%0A-%20Bloquear%20concursantes</text>
+        <text>Funciones%20del%20Organizador%0A-%20Empezar%20concurso%0A%20-%20Determinar%20duracion%0A%20-%20Determinar%20problemas%0A-%20Bloquear%20concursantes</text>
       </controlProperties>
     </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Accordion" x="780" y="245" w="511" h="234" measuredW="150" measuredH="207" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Accordion" x="780" y="245" w="511" h="234" measuredW="171" measuredH="121" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>1</selectedIndex>
-        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <text>Administrar%20Participantes</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="455" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="702" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>0</selectedIndex>
         <text>General%0AAdministraci%F3n%0AResumen</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="262" y="731" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="130" y="740" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>HH%3Amm%3Ass</text>
       </controlProperties>
     </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::SubTitle" x="242" y="691" w="-1" h="-1" measuredW="257" measuredH="40" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::SubTitle" x="127" y="691" w="-1" h="-1" measuredW="257" measuredH="40" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Duraci%F3n%20del%20concurso</text>
       </controlProperties>
     </control>
-    <control controlID="30" controlTypeID="com.balsamiq.mockups::SubTitle" x="262" y="781" w="-1" h="-1" measuredW="215" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::SubTitle" x="127" y="781" w="-1" h="-1" measuredW="119" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Elegir%20el%20problema</text>
+        <text>Problemas</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Button" x="127" y="982" w="478" h="55" measuredW="74" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Button" x="127" y="1226" w="478" h="55" measuredW="74" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Dale%20ya%21</text>
       </controlProperties>
@@ -111,17 +111,31 @@
         <text>%23%2C%20Nombre%2C%20Apellido%2C%20Equipo%2C%20Bloquear%20subida%0A1%2C%20Ricky%2C%20Rick%2C%20Raul%20Pe%F1a%2C%20Desbloqueado%0A2%2C%20Alfredo%2C%20Gimenez%2C%20Raul%20Pe%F1a%2C%20Bloqueado%0A3%2C%20Freddy%2C%20Buller%2C%20Ciudad%20del%20Este%2C%20Desbloqueado%0A4%2C%20Freddy%2C%20The%20Loco%2C%20Encarnaci%F3n%2C%20Desbloqueado</text>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::ComboBox" x="127" y="836" w="226" h="-1" measuredW="112" measuredH="112" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::ComboBox" x="127" y="850" w="226" h="-1" measuredW="112" measuredH="112" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>EmoticonIcon%7Csmall</icon>
         <text>Elegir...%0AHallar%20factorial%0AEncontrar%20numero%20primos%0AHallar%20diferencia%20entre%20dos%20numeros%0Aetc.</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Canvas" x="378" y="836" w="227" h="112" measuredW="100" measuredH="70" zOrder="18" locked="false" isInGroup="-1"/>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::Paragraph" x="388" y="845" w="206" h="93" measuredW="200" measuredH="140" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="__group__" x="378" y="850" w="227" h="112" measuredW="227" measuredH="112" zOrder="18" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="227" h="112" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="41"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Paragraph" x="10" y="9" w="206" h="93" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="41">
+          <controlProperties>
+            <size>10</size>
+            <text>Hallar%20el%20factorial%20de%20un%20numero%20positivo%20entero......</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Link" x="127" y="821" w="-1" h="-1" measuredW="160" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
-        <size>10</size>
-        <text>Hallar%20el%20factorial%20de%20un%20numero%20positivo%20entero......</text>
+        <text>Crear%20un%20nuevo%20problema</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Link" x="127" y="971" w="-1" h="-1" measuredW="204" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%F1adir%20m%E1s%20para%20este%20concurso%20</text>
       </controlProperties>
     </control>
   </controls>

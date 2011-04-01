@@ -27,8 +27,8 @@
             </div>
             <ul id="tools">
                 <li>
-                    #{if usuario}
-                    Hola, ${usuario.login}! <a href="@{ Secure.logout() }">Desconectar.</a>
+                    #{if user}
+                    Hola, ${user.login}! <a href="@{ Secure.logout() }">Desconectar.</a>
                     #{/if}
                     #{else}
                     <a href="@{ Secure.login() }">Iniciar sesion</a>

@@ -17,28 +17,28 @@
             </tr>
         </thead>
         <tbody class="ui-widget-content">
-            #{list items:concursantes, as:'concursante'}
+            #{list items:participants, as:'participant'}
             <tr>
-                <td>${concursante.id}</td>
-                <td>${concursante.nombre}</td>
-                <td>${concursante.apellido}</td>
-                <td>${concursante.equipo}</td>
+                <td>${participant_index}</td>
+                <td>${participant.name}</td>
+                <td>${participant.surname}</td>
+                <td>${participant.team}</td>
                 <td>
-                #{if (concursante.trabajo != null) && (concurso.tiempoInicial == null)}
+                #{if !(participant.work.exists()) && (competition.startTime == null)}
                     Pendiente
                 #{/if}
-                #{elseif (concursante.trabajo != null) && (concurso.tiempoInicial != null)}
-                    <a href="@{Concursantes.mostrarTrabajo(concursante.id)}">Ver</a>
+                #{elseif (participant.work.exists()) && (competition.startTime != null)}
+                    <a href="@{Participants.showWork(participant.id)}">Ver</a>
                 #{/elseif}
-                #{elseif (concurso.tiempoInicial != null) && (concurso.tiempoFinal != null)}
+                #{elseif (competition.startTime != null) && (competition.endTime != null)}
                     No entregó.
                 #{/elseif}
                 </td>
                 <td>
-                #{if concursante.trabajo != null }
+                #{if participant.work != null }
                     No disponible
                     #{if concursante.trabajo.exists() == true}
-                        <a href="@{Jurados.evaluarConcursante(concursante.id)}">Evaluar</a></td>
+                        <a href="@{Judges.evaluate(concursante.id)}">Evaluar</a></td>
                     #{/if}
                 #{/if}
 
@@ -53,12 +53,12 @@
     <h2>Tus datos</h2>
 
     <ul>
-        <li>Nombre: ${ jurado.nombre_y_apellido() }</li>
-        <li>Concurso: ${ concurso }</li>
+        <li>Nombre: ${ judge.name_and_surname() }</li>
+        <li>Concurso: ${ competition }</li>
     </ul>
 
 
-<!--<script type="text/javascript">
+<script type="text/javascript">
    $(document).ready(function()
    {
        #{tabularasa.init tableId:'tab'}
@@ -82,4 +82,4 @@
        });
    });
 
-</script>-->
+</script>

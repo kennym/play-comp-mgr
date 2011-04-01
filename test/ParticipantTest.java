@@ -26,8 +26,9 @@ public class ParticipantTest extends UnitTest {
         Participant concursante1 = concurso.createParticipant(equipo1, "Kenny", "Meyer", "kenny", "meyer");
 
         // Crear trabajo para concursante 1
-        concursante1.createWork(new Blob());
-        assertNotNull(concursante1.work);
-        assertNotNull(concursante1.work.blob);
+        Blob file = new Blob();
+        Work work = new Work(concursante1, file);
+        assertNotNull(work.participant);
+        assertNotNull(work.file);
     }
 }

@@ -30,7 +30,6 @@ public class Participant extends User {
 
     public boolean canSubmitWork;
 
-    @OneToOne
     public Work work;
 
     public Participant(Competition competition,
@@ -51,10 +50,12 @@ public class Participant extends User {
         create();
     }
 
-    public void createWork(Blob blob) {
-        this.work = new Work(this, blob);
+    public Work createWork(Blob solution) {
+        Work work = new Work(this, solution);
 
-        this.save();
+        this.refresh();
+
+        return work;
     }
 
     public void canSubmit(boolean yesOrNo) {
@@ -73,13 +74,13 @@ public class Participant extends User {
      * @return long
      */
     public long getPoints() {
-        long points;
+        long points = 0;
 
-        try {
-            points = this.work.points;
-        } catch (NullPointerException e) {
-            points = 0;
-        }
+//        try {
+//            points = this.work.points;
+//        } catch (NullPointerException e) {
+//            points = 0;
+//        }
 
         return points;
     }

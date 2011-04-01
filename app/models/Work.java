@@ -8,43 +8,32 @@ import play.data.validation.*;
 import play.data.binding.As;
 
 /**
- * Representa el trabajo del participante
+ * Object which can be evaluated by a Judge and submitted by
+ * a Participant.
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity
 public class Work extends Model {
     @Required
+    @ManyToOne
     public Participant participant;
 
     /**
      * El trabajo en forma de un objeto binario.
      */
-    @Lob
-    public Blob blob;
+    public Blob file;
 
     public long points;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @As("dd/MM/yyyy/hh:mm:ss")
-    public Date creationDate = new Date();
-
-    public Work(Participant participant, Blob blob) {
+    public Work (Participant participant, Blob file) {
         this.participant = participant;
-        this.blob = blob;
+        this.file = file;
 
         create();
     }
 
-    public boolean exists() {
-        if (this.blob.exists()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void evaluar() {
+    public void evaluate() {
 
     }
 }

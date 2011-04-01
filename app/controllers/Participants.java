@@ -60,9 +60,9 @@ public class Participants extends Application {
         Participant participant = Participant.findById(id);
 
         // Rendir la URI del trabajo si existe.
-        if (participant.work != null && participant.work.exists()) {
-            response.contentType = participant.work.blob.type();
-            renderBinary(participant.work.blob.get(), participant.work.blob.length());
+        if (participant.work != null && participant.work != null) {
+            response.contentType = participant.work.file.type();
+            renderBinary(participant.work.file.get(), participant.work.file.length());
         } else {
             notFound();
         }

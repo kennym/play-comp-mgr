@@ -13,8 +13,8 @@ public class Application extends CRUD {
     @Before
     static void checkConnected() {
         if (Security.isConnected()) {
-            User usuario = User.find("byLogin", Security.connected()).first();
-            renderArgs.put("usuario", usuario);
+            User user = User.find("byLogin", Security.connected()).first();
+            renderArgs.put("user", user);
         }
     }
 
@@ -22,10 +22,10 @@ public class Application extends CRUD {
      * Verificar que un Ussser está conectado y devolverlo.
      */
     static User connected() {
-        if (renderArgs.get("usuario") != null) {
-            return renderArgs.get("usuario", User.class);
+        if (renderArgs.get("user") != null) {
+            return renderArgs.get("user", User.class);
         }
-        String username = session.get("usuario");
+        String username = session.get("user");
         if (username != null) {
             return User.find("byLogin", username).first();
         }

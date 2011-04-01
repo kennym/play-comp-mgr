@@ -8,9 +8,7 @@ import org.joda.time.format.*;
 import models.*;
 
 /**
- * Organizadores
- *
- * El controller para Organizer().
+ * Controller for the Organizer model.
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
