@@ -31,10 +31,10 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Accordion" x="773" y="521" w="518" h="181" measuredW="150" measuredH="121" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Accordion" x="773" y="521" w="518" h="239" measuredW="150" measuredH="207" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>2</selectedIndex>
-        <text>Resumen</text>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
@@ -55,7 +55,7 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="773" y="552" w="518" h="150" measuredW="374" measuredH="148" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="773" y="610" w="518" h="150" measuredW="374" measuredH="148" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <markup>true</markup>
         <selectedIndex>0</selectedIndex>
@@ -67,18 +67,23 @@
         <borderStyle>square</borderStyle>
         <hasHeader>true</hasHeader>
         <selectedIndex>-1</selectedIndex>
-        <text>Funciones%20del%20Organizador%0A-%20Empezar%20concurso%0A%20-%20Determinar%20duracion%0A%20-%20Determinar%20problemas%0A-%20Bloquear%20concursantes</text>
+        <text>Funciones%20del%20Organizador%0A-%20Empezar%20concurso%0A%20-%20Determinar%20duracion%0A%20-%20Determinar%20problema%0A-%20Bloquear%20concursantes</text>
       </controlProperties>
     </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Accordion" x="780" y="245" w="511" h="234" measuredW="171" measuredH="121" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Accordion" x="780" y="245" w="511" h="234" measuredW="150" measuredH="207" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>1</selectedIndex>
-        <text>Administrar%20Participantes</text>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
     <control controlID="27" controlTypeID="com.balsamiq.mockups::Accordion" x="110" y="651" w="518" h="769" measuredW="150" measuredH="207" zOrder="6" locked="false" isInGroup="-1">
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="130" y="740" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>General%0AAdministraci%F3n%0AResumen</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
     <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="137" y="737" w="216" h="-1" measuredW="77" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
