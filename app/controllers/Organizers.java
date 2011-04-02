@@ -47,11 +47,11 @@ public class Organizers extends Application {
      */
     public static void startCompetition(final Long id,
                                         final String duration,
-                                        final List<Long> problem_ids) {
+                                        final List<Long> problem_id) {
         validation.required(id);
         validation.required(duration);
-        validation.required(problem_ids);
-        System.out.println(problem_ids);
+        validation.required(problem_id);
+        System.out.println(problem_id);
         System.out.println(request.params.urlEncode());
         // Duration should be formatted HH:mm:ss, but not 00:00:00
         validation.match(duration, "^[0-9]{2}:[0-9]{2}:[0-9]{2}$");
@@ -76,6 +76,13 @@ public class Organizers extends Application {
         Competition competition = Competition.findById(id);
 
         competition.stop();
+
+        Organizers.index();
+    }
+
+    public static void resetCompetition(Long id) {
+        Competition competition = Competition.findById(id);
+        competition.reset();
 
         Organizers.index();
     }

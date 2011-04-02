@@ -81,6 +81,14 @@ public class Competition extends Model {
         save();
     }
 
+    public void reset() {
+        this.startTime = null;
+        this.endTime = null;
+        this.duration = null;
+
+        save();
+    }
+
     public void blockSubmissions() {
         for(Participant participant: this.participants) {
             participant.canSubmit(false);
@@ -171,6 +179,10 @@ public class Competition extends Model {
         this.refresh();
 
         return participant;
+    }
+
+    public void addProblem(Problem problem) {
+        this.problems.add(problem);
     }
 
     public String toString() {

@@ -39,12 +39,10 @@
             <p>Se debe crear problemas primeramente!</p>
         #{/ifnot}
         #{else}
-            <div class="problem-field">
-                #{field 'problem'}
-                    #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, class:"problem-select" /}
+                #{field 'problem_id'}
+                    #{select field.name, items:problems, valueProperty:'id', labelProperty:'title', class:"problem-select" /}
                 #{/}
-                <span class="problem-description" >Descripcion del problema...</span>
-            </div>
+                <p class="problem-description" >Descripcion del problema...</p>
 
             <div>
                 <a id="add-problem" href="">Agregar problema...</a>
@@ -60,9 +58,15 @@
         #{form @Organizers.stopCompetition(competition.id), method:'POST'}
             <input type="submit" value="Parar Concurso" />
         #{/form}
+        #{form @Organizers.resetCompetition(competition.id), method:'POST'}
+            <input type="submit" value="Resetear Concurso" />
+        #{/form}
     #{/elseif}
     #{elseif competition.startTime && competition.endTime}
             <p>El concurso ha terminado.</p>
+        #{form @Organizers.resetCompetition(competition.id), method:'POST'}
+            <input type="submit" value="Resetear Concurso" />
+        #{/form}
     #{/elseif}
         </div>
     </div>
@@ -147,7 +151,7 @@
         $('#accordion').accordion();
 
         // Make the form dynamic
-        $(".problem-field").dynamicForm("#add-problem", "#remove-problem", {
+        $(".problem-select").dynamicForm("#add-problem", "#remove-problem", {
             limit:5,
             createColor:'yellow',
             removeColor:'red'

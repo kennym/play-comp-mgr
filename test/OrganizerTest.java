@@ -2,15 +2,20 @@ import play.test.*;
 import play.mvc.*;
 import play.mvc.Http.*;
 
+import java.util.List;
+
 import org.junit.*;
 import org.joda.time.DateTime;
 import org.joda.time.format.*;
 
 import models.*;
+import controllers.Organizers;
 
 public class OrganizerTest extends UnitTest {
+    List<Long> problem_ids;
+
     @Test
-    public void organizarConcurso() {
+    public void organizeCompetition() {
         // Crear un nuevo concurso
         new Competition("Concurso Ejemplar", "", null, null).save();
 
@@ -36,5 +41,28 @@ public class OrganizerTest extends UnitTest {
 
         concurso.stop();
         assertNotNull(concurso.endTime);
+    }
+
+    /**
+     * Start a competition with specified problems.
+     */
+    @Test
+    public void startCompetitionWithProblems() {
+        problem_ids.clear();
+
+        Competition competition = new Competition("Other competition", "", null, null);
+        competition.save();
+
+        // Create some problems
+        Problem problem_1 = new Problem("Test 1", "Test 1");
+        problem_1.save();
+        problem_ids.add(problem_1.id);
+        Problem problem_2 = new Problem("Test 2", "Test 2");
+        problem_2.save();
+        problem_ids.add(problem_2.id);
+
+        competition.addProblem(problem_1);
+        competition.addProblem(problem_2);
+
     }
 }

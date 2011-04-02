@@ -37,6 +37,9 @@ public class ParticipantTest extends UnitTest {
         assertNotNull(concursante1.solutions.get(0).problem);
     }
 
+    /**
+     * Specifies expected behavior for submitting solutions to problems.
+     */
     @Test
     public void submitSolutions() {
 
