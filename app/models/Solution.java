@@ -49,6 +49,13 @@ public class Solution extends Model {
         create();
     }
 
+    public boolean exists() {
+        if (this.blob.exists()) {
+            return true;
+        }
+        return false;
+    }
+
     public void evaluate() {
 
     }

@@ -28,7 +28,10 @@ public class Participants extends Application {
 
         Competition competition = participant.competition;
         List<Participant> participants = Participant.find("byCompetitionLike", competition).fetch();
-        List<Problem> problems = competition.problems;
+        List<Problem> problems = Problem.findAll();
+        if (problems == null) {
+            problems = null;
+        }
         String team = participant.team.toString();
 
         render(participant, participants, competition, team, problems);

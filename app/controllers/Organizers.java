@@ -52,7 +52,7 @@ public class Organizers extends Application {
         validation.required(duration);
         validation.required(problem_ids);
         System.out.println(problem_ids);
-        System.out.println(params.toString());
+        System.out.println(request.params.urlEncode());
         // Duration should be formatted HH:mm:ss, but not 00:00:00
         validation.match(duration, "^[0-9]{2}:[0-9]{2}:[0-9]{2}$");
         if (validation.hasErrors()) {

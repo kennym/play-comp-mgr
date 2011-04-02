@@ -8,28 +8,16 @@
 <div id="accordion">
     <h3><a href="#tab1">Informaci&oacute;n General</a></h3>
     <div>
-        <h3>Anunciado del problema</h3>
+    #{ifnot problems}
+        <p>No existen problemas ningunos</p>
+    #{/ifnot}
+    #{else}
+        #{list problems, as:'problem'}
+        <h3>Anunciado del problema #${problem_index}</h3>
         <p>${problem?.description }</p>
-    </div>
-
-    <h3><a href="#tab2">Subir trabajo</a></h3>
-    <div>
-    #{if participant.work == null }
-        #{form @Participants.submitWork(participant.id), method:'POST',
-            id:'trabajo-form', enctype:'multipart/form-data' }
-            <p>
-                #{field 'work'}
-                <input type="file" name="${field.name}" value="${participant.work}" size=""><br />
-                <input type="submit" value="Enviar">
-                #{/field}
-            </p>
-        #{/form}
-    #{/if}
-    #{elseif participant.work != null}
-        <h3>Has subido el trabajo!</h3>
-
-        <a href="@{Participants.mostrarTrabajo(concursante.id)}">Ver tu trabajo.</a>
-    #{/elseif}
+        <span style="font-weight: bold;">Subir solucion</span>
+        #{/list}
+    #{/else}
     </div>
 
     <h3><a href="#tab3">Resumen</a></h3>

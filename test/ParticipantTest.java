@@ -27,7 +27,7 @@ public class ParticipantTest extends UnitTest {
         // Crear concursantes para equipo1
         Participant concursante1 = concurso.createParticipant(equipo1, "Kenny", "Meyer", "kenny", "meyer");
 
-       // Obtener los problemas
+        // Obtener los problemas
         List<Problem> problems = Problem.all().fetch();
         assertNotNull(problems);
 
@@ -35,5 +35,10 @@ public class ParticipantTest extends UnitTest {
         concursante1.submitSolution(problems.get(0), new Blob());
         assertNotNull(concursante1.solutions.get(0).blob);
         assertNotNull(concursante1.solutions.get(0).problem);
+    }
+
+    @Test
+    public void submitSolutions() {
+
     }
 }

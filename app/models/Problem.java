@@ -17,7 +17,7 @@ import play.data.validation.*;
 @Entity
 public class Problem extends Model {
     @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Competition> competition;
+    public List<Competition> competitions;
 
     @Required
     public String title;
@@ -32,6 +32,10 @@ public class Problem extends Model {
         this.description = description;
 
         create();
+    }
+
+    public void setCompetition(Competition competition) {
+        this.competitions.add(competition);
     }
 
     public String toString() {

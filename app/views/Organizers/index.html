@@ -6,7 +6,7 @@
 
 <div id="accordion">
     <h3>
-        <a name="#tab1">
+        <a name="tab1">
             Administrar Concurso
         </a>
     </h3>
@@ -32,7 +32,7 @@
 
             <h4>Problemas</h4>
             <p>Define aqui los problemas que cada participante debe completar
-                en el tiempo establecido
+                en el tiempo establecido.
             </p>
             <hr />
         #{ifnot problems}
@@ -42,14 +42,14 @@
             <div class="problem-field">
                 #{field 'problem'}
                     #{select 'problem', items:problems, valueProperty:'id', labelProperty:'title', value:5, class:"problem-select" /}
-                    <span class="problem-description" >Descripcion del problema...</span>
                 #{/}
+                <span class="problem-description" >Descripcion del problema...</span>
             </div>
 
-            <p>
+            <div>
                 <a id="add-problem" href="">Agregar problema...</a>
                 <a id="remove-problem" href="">Borrar problema...</a>
-            </p>
+            </div>
         #{/else}
 
             <br />
@@ -64,12 +64,11 @@
     #{elseif competition.startTime && competition.endTime}
             <p>El concurso ha terminado.</p>
     #{/elseif}
-
         </div>
     </div>
 
     <h3>
-        <a name="#tab2">
+        <a name="tab2">
             Administrar Participantes
         </a>
     </h3>
@@ -108,7 +107,7 @@
     </div>
 
     <h3>
-        <a name="#tab3">
+        <a name="tab3">
             Datos personales
         </a>
     </h3>
