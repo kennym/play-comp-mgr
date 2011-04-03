@@ -51,6 +51,12 @@
                 <li class="${request.controller == 'ApplicationRoles' ? 'selected' : ''}">
                     <a href="@{ApplicationRoles.list()}">Roles</a>
                 </li>
+                <li class="${request.controller == 'Problems' ? 'selected' : ''}">
+                    <a href="@{Problems.list()}">Problemas</a>
+                </li>
+                <li class="${request.controller == 'Solutions' ? 'selected' : ''}">
+                    <a href="@{Solutions.list()}">Soluciones</a>
+                </li>
             </ul>
 
             #{doLayout /}

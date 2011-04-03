@@ -58,7 +58,7 @@ public class Participant extends User {
     public void submitSolution(Problem problem, Blob blob) {
         solutions.add(0, new Solution(this, problem, blob));
 
-        this.refresh();
+        this.save();
     }
 
     public void canSubmit(boolean yesOrNo) {

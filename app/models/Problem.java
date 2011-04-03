@@ -22,6 +22,8 @@ public class Problem extends Model {
     @Required
     public String title;
 
+    public Solution solution;
+
     @Required
     @Lob
     public String description;
@@ -36,6 +38,17 @@ public class Problem extends Model {
 
     public void setCompetition(Competition competition) {
         this.competitions.add(competition);
+    }
+
+    public boolean isSolved() {
+        try {
+            if (solution.exists()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String toString() {

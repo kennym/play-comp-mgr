@@ -1,9 +1,9 @@
 package controllers;
 
-
 import java.util.List;
 
 import play.db.jpa.Blob;
+import play.Logger;
 
 import models.*;
 
@@ -37,16 +37,29 @@ public class Participants extends Application {
         render(participant, participants, competition, team, problems);
     }
 
-    public static void submitWork(Long participant_id,
-                                  Long problem_id,
-                                  Blob work) {
+    public static void submitSolution(Long participant_id,
+                                      Long problem_id,
+                                      Blob solution) {
+        validation.required(participant_id);
+        validation.required(problem_id);
+        validation.required(solution);
+        Logger.info(Long.toString(participant_id));
+        Logger.info(Long.toString(problem_id));
+        Logger.info(solution.toString());
+        if (validation.hasErrors()) {
+
+            params.flash();
+            validation.keep();
+            Participants.index();
+        }
+
         // Get the participant and the problem from the database.
         Participant participant = Participant.findById(participant_id);
         Problem problem = Problem.findById(problem_id);
 
         // Verificar que el usuario puede subir su trabajo y que el concurso
         // está en progreso.
-        if (participant.team.competition.endTime != null) {
+        if (participant.competition.endTime != null) {
             // TODO: Visualizar un error en la página web.
         }
 
@@ -55,7 +68,7 @@ public class Participants extends Application {
         }
 
         // Actualizar el trabajo
-        participant.submitSolution(problem, work);
+        participant.submitSolution(problem, solution);
 
         // Volver al índice
         Participants.index();

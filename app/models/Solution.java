@@ -27,8 +27,6 @@ public class Solution extends Model {
      * A solution must have a OneToOne relationship to a Problem() as it
      * supposedly provides the "solution" to a Problem().
      */
-    @Required
-    public Problem problem;
 
     @Required
     public Blob blob;
@@ -43,7 +41,7 @@ public class Solution extends Model {
                     Problem problem,
                     Blob blob) {
         this.participant = participant;
-        this.problem = problem;
+        //this.problem = problem;
         this.blob = blob;
 
         create();
