@@ -45,10 +45,10 @@ public class Organizers extends Application {
      * @param id the ID of the competition
      * @param duration the duration of the competition
      */
-    public static void startCompetition(final Long id,
+    public static void startCompetition(final Long competition_id,
                                         final String duration,
                                         final List<Long> problem_id) {
-        validation.required(id);
+        validation.required(competition_id);
         validation.required(duration);
         validation.required(problem_id);
         System.out.println(problem_id);
@@ -61,7 +61,13 @@ public class Organizers extends Application {
             Organizers.index();
         }
 
-        Competition competition = Competition.findById(id);
+        Competition competition = Competition.findById(competition_id);
+
+        // Add problems to competition
+        for (Long id: problem_id) {
+            Problem problem = Problem.findById(id);
+            competition.addProblem(problem);
+        }
 
         // Parse datetime
         DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm:ss");

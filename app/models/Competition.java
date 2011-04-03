@@ -86,13 +86,31 @@ public class Competition extends Model {
         this.endTime = null;
         this.duration = null;
 
+        this.problems.clear();
+
         save();
     }
+
+    /**
+     * Add an existing problem to this competition.
+     *
+     * @param problem
+     */
+    public void addProblem(Problem problem) {
+        this.problems.add(problem);
+
+        assert this.problems != null;
+
+        save();
+    }
+
 
     public void blockSubmissions() {
         for(Participant participant: this.participants) {
             participant.canSubmit(false);
         }
+
+        save();
     }
 
     public long getRemainingSeconds() {
@@ -100,6 +118,7 @@ public class Competition extends Model {
         DateTime endTime = startTime.plusHours(this.duration.getHourOfDay());
         endTime = startTime.plusMinutes(this.duration.getMinuteOfDay());
         endTime = startTime.plusSeconds(this.duration.getSecondOfDay());
+;
 
         Duration restTime = new Duration(new DateTime(), endTime);
 
@@ -179,10 +198,6 @@ public class Competition extends Model {
         this.refresh();
 
         return participant;
-    }
-
-    public void addProblem(Problem problem) {
-        this.problems.add(problem);
     }
 
     public String toString() {
