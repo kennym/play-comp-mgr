@@ -26,15 +26,15 @@
             <p>${problem?.description }</p>
             #{if problem.isSolved() == false}
                 #{form @Participants.submitSolution(participant.id, problem.id),
-                       method:'POST', id:'solution-submit-form',
-                       enctype:'multipart/form-data'}
+                    method:'POST', id:'solution-submit-form',
+                    enctype:'multipart/form-data'}
                     <input type="file" name="solution" value="Enviar solucion" />
 
                     <input type="submit" value="Enviar solucion" />
                 #{/form}
             #{/if}
             #{else}
-                #{a @Participants.showSolution(participant.id, problem.id)}
+                #{a @Participants.showSolution(problem.id)}
                     Ver la solucion enviada
                 #{/a}
             #{/else}

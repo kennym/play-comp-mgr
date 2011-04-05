@@ -24,35 +24,35 @@
         </div>
         #{/ifErrors}
 
+        <div>
+            <h4>Problemas</h4>
+            #{ifnot problems}
+                <div>
+                    No hay problemas existentes. Agregar como mínimo uno.
+                </div>
+            #{/ifnot}
+            #{else}
+                #{list problems, as:'problem', id:"problem-list"}
+                    <li id="${problem.id}">
+                        <h3>${problem.title}</h3>
+                        <p class="problem-description" >
+                            ${problem.description}
+                        </p>
+                    </li>
+                #{/list}
+            #{/else}
+        </div>
+
         #{form @Organizers.startCompetition(competition.id), method:'POST', id:'competition-form'}
             #{field 'duration'}
             <h4>Duración del concurso</h4>
             <input type="text" name="${field.name}" id="timepicker" size="10" value="00:00:00" />
             #{/field}
-
-            <h4>Problemas</h4>
-            <p>Define aqui los problemas que cada participante debe completar
-                en el tiempo establecido.
-            </p>
-            <hr />
-        #{ifnot problems}
-            <p>Se debe crear problemas primeramente!</p>
-        #{/ifnot}
-        #{else}
-                #{field 'problem_id'}
-                    #{select field.name, items:problems, valueProperty:'id', labelProperty:'title', class:"problem-select" /}
-                #{/}
-                <p class="problem-description" >Descripcion del problema...</p>
-
-            <div>
-                <a id="add-problem" href="">Agregar problema...</a>
-                <a id="remove-problem" href="">Borrar problema...</a>
-            </div>
-        #{/else}
-
             <br />
             <input type="submit" value="Iniciar Concurso" />
         #{/form}
+
+
     #{/ifnot}
     #{elseif !(competition.endTime)}
         #{form @Organizers.stopCompetition(competition.id), method:'POST'}
@@ -97,10 +97,10 @@
                     <td>${participant.team}</td>
                     <td>
                     #{if participant.isBlocked() == false}
-                        #{a @Organizers.canSubmit(participant.id, false) }Bloquear#{/a}
+                        #{a @Organizers.blockSubmission(participant.id, false) }Bloquear#{/a}
                     #{/if}
                     #{else}
-                        #{a @Organizers.canSubmit(participant.id, true) }Desbloquear#{/a}
+                        #{a @Organizers.blockSubmission(participant.id, true) }Desbloquear#{/a}
                     #{/else}
                     </td>
 
@@ -127,6 +127,9 @@
 #{set 'moreScripts'}
 <script type="text/javascript">
     $(document).ready(function(){
+        // Make the accordion
+        $('#accordion').accordion();
+
         $("#timepicker").timepicker({
             timeOnlyTitle: 'Determinar duración',
             timeText: 'Tiempo',
@@ -137,24 +140,6 @@
             closeText: 'OK',
             timeFormat: 'hh:mm:ss',
             showSecond: true
-        });
-
-        // Callback for showing problem description in textarea when clicking the problem
-        var jqhxr = $(".problem-select").live("change", function() {
-            var getDescription = #{jsAction @Problems.getDescription(':id') /}
-            jQuery.get(getDescription({id: $(this).val()}), function(data) {
-                $('.problem-description').text(data);
-            });
-        });
-
-        // Make the accordion
-        $('#accordion').accordion();
-
-        // Make the form dynamic
-        $(".problem-select").dynamicForm("#add-problem", "#remove-problem", {
-            limit:5,
-            createColor:'yellow',
-            removeColor:'red'
         });
     });
 

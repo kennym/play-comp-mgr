@@ -80,9 +80,11 @@ Organizer(organizer_1):
     role:           organizer_role
 
 Problem(problem_1):
+    competition:    competition_1
     title:          Numeros primos
     description:    Debe escribir un programa que retorne todos los numeros primos entre 1 y 500
 
 Problem(problem_2):
+    competition:    competition_1
     title:          Factorial
     description:    Hallar el factorial de un numero

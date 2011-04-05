@@ -12,11 +12,7 @@ import play.data.validation.*;
  * The indicators serve to point the actual work.
  * 
  * Indicators:
- * <ul>
- *  <li>compiles</li>
- *  <li>returnsCorrectResult</li>
- * </ul>
- *
+ * 
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
 @Entity

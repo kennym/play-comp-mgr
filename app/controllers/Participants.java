@@ -74,15 +74,20 @@ public class Participants extends Application {
         Participants.index();
     }
 
-    public static void showSolution(Long solution_id) {
-        Solution solution = Solution.findById(solution_id);
+    public static void showSolution(Long problem_id) {
+        User user = connected();
+        Participant participant = Participant.find("byLogin", user.login).first();
 
-        // Render the solution blob if available
-        if (solution != null && solution.exists()) {
-            response.contentType = solution.blob.type();
-            renderBinary(solution.blob.get(), solution.blob.length());
-        } else {
-            notFound();
+        List<Solution> solutions = participant.solutions;
+
+        assert(solutions.isEmpty() == false);
+        for (Solution solution: solutions) {
+            if (solution.problem.id == problem_id) {
+                response.contentType = solution.blob.type();
+                renderBinary(solution.blob.get(), solution.blob.length());
+                break;
+            }
         }
+        notFound();
     }
 }

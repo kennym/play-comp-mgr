@@ -41,7 +41,7 @@ public class Judges extends Application {
      *
      * @param id Identificador del concursante
      */
-    public static void evalaluateWork(Long id) {
+    public static void evaluateWork(Long id) {
         // TODO
     }
 }

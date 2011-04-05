@@ -46,12 +46,9 @@ public class Organizers extends Application {
      * @param duration the duration of the competition
      */
     public static void startCompetition(final Long competition_id,
-                                        final String duration,
-                                        final List<Long> problem_id) {
+                                        final String duration) {
         validation.required(competition_id);
         validation.required(duration);
-        validation.required(problem_id);
-        System.out.println(problem_id);
         System.out.println(request.params.urlEncode());
         // Duration should be formatted HH:mm:ss, but not 00:00:00
         validation.match(duration, "^[0-9]{2}:[0-9]{2}:[0-9]{2}$");
@@ -63,12 +60,6 @@ public class Organizers extends Application {
 
         Competition competition = Competition.findById(competition_id);
 
-        // Add problems to competition
-        for (Long id: problem_id) {
-            Problem problem = Problem.findById(id);
-            competition.addProblem(problem);
-        }
-
         // Parse datetime
         DateTimeFormatter dtf = DateTimeFormat.forPattern("HH:mm:ss");
         DateTime durationDateTime = dtf.parseDateTime(duration);
@@ -76,6 +67,10 @@ public class Organizers extends Application {
         competition.start(durationDateTime);
 
         Organizers.index();
+    }
+
+    public static void createProblem() {
+
     }
 
     public static void stopCompetition(Long id) {
@@ -93,7 +88,7 @@ public class Organizers extends Application {
         Organizers.index();
     }
 
-    public static void canSubmit(Long id, boolean canSubmit) {
+    public static void blockSubmission(Long id, boolean canSubmit) {
         Participant participant = Participant.findById(id);
 
         participant.canSubmit(canSubmit);

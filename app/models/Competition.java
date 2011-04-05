@@ -1,6 +1,7 @@
 package models;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 import org.joda.time.*;
@@ -38,20 +39,19 @@ public class Competition extends Model {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime duration;
 
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Participant> participants;
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Organizer> organizers;
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Team> teams;
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Judge> judges;
 
     /**
-     * A competition can have many problems, and problems can be assigned
-     * to more than one competition.
+     * A competition can have many problems
      */
-    @ManyToMany
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Problem> problems;
 
     public Competition(String title,
@@ -92,18 +92,21 @@ public class Competition extends Model {
     }
 
     /**
-     * Add an existing problem to this competition.
-     *
-     * @param problem
+     * Check that competition is running.
+     * 
+     * A competition validates as started when the duration, start time and 
+     * end time were defined.
+     * 
+     * @return boolean
      */
-    public void addProblem(Problem problem) {
-        this.problems.add(problem);
-
-        assert this.problems != null;
-
-        save();
+    public boolean isRunning() {
+        if (this.duration != null &&
+            this.startTime != null &&
+            this.endTime == null) {
+            return true;
+        }
+        return false;
     }
-
 
     public void blockSubmissions() {
         for(Participant participant: this.participants) {
@@ -116,20 +119,26 @@ public class Competition extends Model {
     public long getRemainingSeconds() {
         DateTime startTime = new DateTime(this.startTime);
         DateTime endTime = startTime.plusHours(this.duration.getHourOfDay());
-        endTime = startTime.plusMinutes(this.duration.getMinuteOfDay());
         endTime = startTime.plusSeconds(this.duration.getSecondOfDay());
-;
 
         Duration restTime = new Duration(new DateTime(), endTime);
 
         return restTime.getStandardSeconds();
     }
 
+    public Problem getProblem(int index) {
+        return this.problems.get(index);
+    }
+
+    public List<Problem> getProblems() {
+        return Problem.find("byCompetition", this).fetch();
+    }
+
     /**
      * Crear y devolver un Organizador() relacionado al concurso actual.
      *
-     * @param nombre El nombre del organizador
-     * @param apellido El apellido del organizador
+     * @param name El nombre del organizador
+     * @param surname El apellido del organizador
      * @param login El nombre del usuario del organizador
      * @param password La contraseña del organizador
      * @return Organizador
@@ -148,7 +157,7 @@ public class Competition extends Model {
      * Crear y devolver un Equipo() relacionado con este concurso.
      *
      *
-     * @param nombre El nombre del equipo
+     * @param name El nombre del equipo
      * @return Equipo
      */
     public Team createTeam(String name) {
@@ -162,8 +171,8 @@ public class Competition extends Model {
     /**
      * Crear y devolver un Jurado() relacionado con este concurso.
      *
-     * @param nombre El nombre del Jurado
-     * @param apellido El apellido del Jurado
+     * @param name El nombre del Jurado
+     * @param surname El apellido del Jurado
      * @param login El nombre del usuario del Jurado
      * @param password La contraseña del usuario del Jurado
      * @return Jurado()
@@ -182,10 +191,11 @@ public class Competition extends Model {
     /**
      * Create and return a contestant
      *
-     * @param nombre El nombre del Jurado
-     * @param apellido El apellido del Jurado
-     * @param login El nombre del usuario del Jurado
-     * @param password La contraseña del usuario del Jurado
+     * @param team El nombre del Participante
+     * @param name El nombre del Participante
+     * @param surname El apellido del Participante
+     * @param login El nombre del usuario del Participante
+     * @param password La contraseña del usuario del Participante
      * @return Jurado()
      */
     public Participant createParticipant(Team team,
@@ -198,6 +208,22 @@ public class Competition extends Model {
         this.refresh();
 
         return participant;
+    }
+
+    /**
+     * Create and return a problem
+     *
+     * @param title of the problem
+     * @param description of the problem
+     * @return Problem
+     */
+    public Problem createProblem(String title,
+                                 String description) {
+        Problem problem = new Problem(this, title, description);
+
+        this.refresh();
+
+        return problem;
     }
 
     public String toString() {

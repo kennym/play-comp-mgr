@@ -14,14 +14,14 @@ GET     /concurso/{id}/duracion/?                   Competitions.duration
 
 # Participants
 GET     /participante/index/?                       Participants.index
-POST    /participante/{id}/solucion/subir/?          Participants.submitSolution
-GET     /participante/{id}/solucion/ver/?            Participants.showSolution
+POST    /participante/{id}/solucion/subir/?         Participants.submitSolution
+GET     /participante/solucion/{id}/ver/?           Participants.showSolution
 
 # Organizers
 GET     /organizador/index/?                        Organizers.index
 POST    /organizador/concurso/{id}/iniciar/?        Organizers.startCompetition
 POST    /organizador/concurso/{id}/parar/?          Organizers.stopCompetition
-GET     /organizador/participante/{id}/can_submit/? Organizers.canSubmit
+GET     /organizador/participante/{id}/can_submit/? Organizers.blockSubmission
 
 # Judges
 GET     /jurado/index/?                             Judges.index
@@ -29,6 +29,11 @@ GET     /jurado/evaluar/{id}/?                      Judges.evaluateWork
 
 # Problems
 GET     /problem/description/?                      Problems.getDescription
+GET     /problem/add/?                              Problems.add
+POST    /problem/add/?                              Problems.add
+GET     /problem/borrar/?                           Problems.delete
+POST    /problem/borrar/?                           Problems.delete
+POST    /problem/modificar/?                        Problems.modify
 
 # Catch rest
 *       /{controller}/{action}                      {controller}.{action}

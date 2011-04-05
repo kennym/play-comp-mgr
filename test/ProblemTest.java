@@ -21,7 +21,7 @@ public class ProblemTest extends UnitTest {
 
     @Test
     public void createProblem() {
-        Problem problem = new Problem("Test problem", "Just a test");
+        Problem problem = new Problem(concurso, "Test problem", "Just a test");
 
         System.out.println(problem.title);
         System.out.println(problem.description);

@@ -6,11 +6,11 @@ import javax.persistence.*;
 import play.db.jpa.*;
 import play.data.validation.*;
 
-/**;
+
+/**
+ * Participant
  *
- * Class Name
- *
- * Class description - Explain why you need it and what it does.
+ * Represents the participant model.
  *
  * @author Kenny Meyer <knny.myer@gmail.com>
  */
@@ -56,7 +56,7 @@ public class Participant extends User {
     }
 
     public void submitSolution(Problem problem, Blob blob) {
-        solutions.add(0, new Solution(this, problem, blob));
+        solutions.add(new Solution(this, problem, blob));
 
         this.save();
     }

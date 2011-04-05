@@ -1,4 +1,6 @@
 import org.junit.*;
+import org.joda.time.DateTime;
+
 import play.test.*;
 import play.mvc.Http.*;
 
@@ -10,7 +12,6 @@ public class CompetitionTest extends UnitTest {
     public void crearConcurso() {
         // Create a new contest
         Competition contest = new Competition("Concurso Ejemplar", "", null, null).save();
-
         assertNotNull(contest);
 
         // Create an organizer for this contest
@@ -42,5 +43,20 @@ public class CompetitionTest extends UnitTest {
         Judge jurado = contest.createJudge("Juan", "Perez", "jurado", "jurado");
         assertNotNull(jurado);
 
+    }
+
+    @Test
+    public void isRunning() {
+        Competition competition = new Competition("Test", "", null, null).save();
+
+        assertFalse(competition.isRunning());
+
+        competition.start(new DateTime());
+
+        assertTrue(competition.isRunning());
+
+        competition.stop();
+
+        assertFalse(competition.isRunning());
     }
 }

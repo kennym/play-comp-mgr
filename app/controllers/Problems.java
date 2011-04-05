@@ -22,8 +22,15 @@ public class Problems extends Application {
         renderText(description);
     }
 
-    public static void create() {
-
+    public static void add() {
         render();
+    }
+
+    public static void delete() {
+
+    }
+
+    public static void modify() {
+
     }
 }

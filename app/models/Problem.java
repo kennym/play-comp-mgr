@@ -1,10 +1,8 @@
 package models;
 
-import java.util.List;
 import javax.persistence.*;
 
 import play.db.jpa.*;
-
 import play.data.validation.*;
 
 /**
@@ -16,8 +14,8 @@ import play.data.validation.*;
  */
 @Entity
 public class Problem extends Model {
-    @OneToMany(cascade=CascadeType.PERSIST)
-    public List<Competition> competitions;
+    @ManyToOne
+    public Competition competition;
 
     @Required
     public String title;
@@ -28,19 +26,18 @@ public class Problem extends Model {
     @Lob
     public String description;
 
-    public Problem (String title,
+    public Problem (Competition competition,
+                    String title,
                     String description) {
+        this.competition = competition;
         this.title = title;
         this.description = description;
 
         create();
     }
 
-    public void setCompetition(Competition competition) {
-        this.competitions.add(competition);
-    }
-
     public boolean isSolved() {
+        Solution solution = Solution.find("problem", this).first();
         try {
             if (solution.exists()) {
                 return true;

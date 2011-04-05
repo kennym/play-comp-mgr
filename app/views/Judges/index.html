@@ -1,85 +1,68 @@
 #{extends 'main.html' /}
 #{set title:'Jurado' /}
 #{set section:'Jurado' /}
-<div class="main-section">
-    <h2>Concursantes</h2>
+        
+<div id="accordion">
+    <h3>
+        <a name="tab1">
+            Interfaz administrativa
+        </a>
+    </h3>
 
-    <table id="tab" border="1" class="ui-widget">
-        <thead class="ui-widget-header">
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Equipo</th>
-                <th>Trabajo</th>
-                <th>Evaluaci&oacute;n</th>
-                <th>Puntaje</th>
-            </tr>
-        </thead>
-        <tbody class="ui-widget-content">
-            #{list items:participants, as:'participant'}
-            <tr>
-                <td>${participant_index}</td>
-                <td>${participant.name}</td>
-                <td>${participant.surname}</td>
-                <td>${participant.team}</td>
-                <td>
-                #{if !(participant.work.exists()) && (competition.startTime == null)}
-                    Pendiente
-                #{/if}
-                #{elseif (participant.work.exists()) && (competition.startTime != null)}
-                    <a href="@{Participants.showWork(participant.id)}">Ver</a>
-                #{/elseif}
-                #{elseif (competition.startTime != null) && (competition.endTime != null)}
-                    No entregó.
-                #{/elseif}
-                </td>
-                <td>
-                #{if participant.work != null }
-                    No disponible
-                    #{if concursante.trabajo.exists() == true}
-                        <a href="@{Judges.evaluate(concursante.id)}">Evaluar</a></td>
-                    #{/if}
-                #{/if}
+    <div>
+        <table border="1" class="ui-widget">
+            <thead class="ui-widget-header">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Equipo</th>
+                    #{list competition.getProblems(), as:'problem'}
+                        <th>Solución #${problem_index}</th>
+                    #{/list}
+                    <th>Trabajo</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+            <tbody class="ui-widget-content">
+                #{list items:participants, as:'participant'}
+                <tr>
+                    <td>${participant_index}</td>
+                    <td>${participant.name}</td>
+                    <td>${participant.surname}</td>
+                    <td>${participant.team}</td>
+                    #{list competition.getProblems(), as:'problem'}
+                    <td>Solución #${problem_index}</td>
+                    #{/list}
+                    <td>
+                        <a href="@{Judges.evaluateWork(participant.id)}">Evaluar</a>
+                    </td>
+                    <td></td>
+                </tr>
+                #{/list}
+            </tbody>
+        </table>
+    </div>
 
-                <td></td>
-            </tr>
-            #{/list}
-        </tbody>
-    </table>
+    <h3>
+        <a name="tab2">
+            Datos personales
+        </a>
+    </h3>
+
+    <div>
+        <ul>
+            <li>Nombre: ${ judge.name_and_surname() }</li>
+            <li>Concurso: ${ competition }</li>
+        </ul>
+    </div>
 </div>
 
-<div class="info-section">
-    <h2>Tus datos</h2>
-
-    <ul>
-        <li>Nombre: ${ judge.name_and_surname() }</li>
-        <li>Concurso: ${ competition }</li>
-    </ul>
-
-
+#{set 'moreScripts'}
 <script type="text/javascript">
-   $(document).ready(function()
-   {
-       #{tabularasa.init tableId:'tab'}
-           var tabExtras = {
-               "toolbarTarget": "customiseTable",
-               "toolbar": "<button>hello</button>"
-           };
-           var tabParameters = {
-               "aoColumns": [ {"sName": "name"},
-                              {"sName": "location"}],
-               "sAjaxSource": "",
-               "bProcessing": true,
-               "bServerSide": true,
-               "sDom": 'lfrtip<"customiseTable">'
-            };
-       #{/tabularasa.init}
-
-       // redraw every second
-       $("tab").everyTime(1000, function(i) {
-           $(this).fnDraw(false);
-       });
-   });
-
+    $(document).ready(function(){
+        // Make the accordion
+        $('#accordion').accordion();
+    });
 </script>
+#{/set}
