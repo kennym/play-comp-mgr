@@ -25,6 +25,9 @@ public class Judge extends User {
     @ManyToOne
     public Competition competition;
 
+    @OneToMany
+    public List<Evaluation> evaluations;
+
     public Judge(Competition competition,
                   String name,
                   String surname,
@@ -39,6 +42,24 @@ public class Judge extends User {
         this.role = ApplicationRole.getByName("judge");
 
         create();
+    }
+
+    /**
+     * Create and return an evaluation for a specific solution.
+     *
+     * The evaluation must be unique for the judge and the specified solution.
+     * 
+     * @param solution
+     * @return
+     */
+    public Evaluation createEvaluation(Solution solution) {
+        Evaluation evaluation = new Evaluation(this, solution);
+        this.evaluations.add(evaluation);
+        
+        save();
+        refresh();
+
+        return evaluation;
     }
 
     public String toString() {

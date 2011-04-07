@@ -29,7 +29,7 @@ public class Participant extends User {
     @ManyToOne
     public Team team;
 
-    public boolean canSubmitWork;
+    public boolean canSubmitSolution;
 
     /**
      * One solution for each problem.
@@ -55,20 +55,25 @@ public class Participant extends User {
         create();
     }
 
+    public boolean hasSolved(Problem problem) {
+        for (Solution solution: solutions) {
+            if (solution.problem == problem) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void submitSolution(Problem problem, Blob blob) {
         solutions.add(new Solution(this, problem, blob));
 
         this.save();
     }
 
-    public void canSubmit(boolean yesOrNo) {
-        this.canSubmitWork = yesOrNo;
+    public void canSubmitSolution(boolean yesOrNo) {
+        this.canSubmitSolution = yesOrNo;
 
         this.save();
-    }
-
-    public boolean isBlocked() {
-        return this.canSubmitWork;
     }
 
     /**
@@ -81,6 +86,14 @@ public class Participant extends User {
         long points = 0;
 
         return points;
+    }
+
+    public List<Solution> getSolutions() {
+        return Solution.find("participant", this).fetch();
+    }
+
+    public String name_and_surname() {
+        return this.name + " " + this.surname;
     }
 
     public String toString() {

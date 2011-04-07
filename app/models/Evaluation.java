@@ -17,18 +17,32 @@ import play.data.validation.*;
  */
 @Entity
 public class Evaluation extends Model {
-    public Solution work;
-    public Judge jury;
+    @ManyToOne
+    public Judge judge;
+    @ManyToOne
+    public Solution solution;
 
     // Indicators
-    public boolean compiles;
-    public boolean returnsCorrectResult;
+    public boolean compiles = false;
+    public boolean returnsCorrectResult = false;
 
     // Methods, and all that stuff
-    public Evaluation (Solution work, Judge jury) {
-        this.work = work;
-        this.jury = jury;
+    public Evaluation(Judge judge,
+                      Solution solution) {
+        this.judge = judge;
+        this.solution = solution;
 
         create();
+    }
+
+    /**
+     * Evaluate the solution of the Judge
+     */
+    public void setIndicators(boolean compiles,
+                              boolean returnsCorrectResult) {
+        this.compiles = compiles;
+        this.returnsCorrectResult = returnsCorrectResult;
+
+        save();
     }
 }

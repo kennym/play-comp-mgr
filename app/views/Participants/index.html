@@ -24,7 +24,7 @@
         #{list problems, as:'problem'}
             <h3>Anunciado del problema #${problem_index}</h3>
             <p>${problem?.description }</p>
-            #{if problem.isSolved() == false}
+            #{if participant.hasSolved(problem) == false}
                 #{form @Participants.submitSolution(participant.id, problem.id),
                     method:'POST', id:'solution-submit-form',
                     enctype:'multipart/form-data'}
@@ -34,7 +34,7 @@
                 #{/form}
             #{/if}
             #{else}
-                #{a @Participants.showSolution(problem.id)}
+                #{a @Participants.showSolution(participant.id, problem.id)}
                     Ver la solucion enviada
                 #{/a}
             #{/else}

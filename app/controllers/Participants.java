@@ -3,7 +3,6 @@ package controllers;
 import java.util.List;
 
 import play.db.jpa.Blob;
-import play.Logger;
 
 import models.*;
 
@@ -28,7 +27,7 @@ public class Participants extends Application {
 
         Competition competition = participant.competition;
         List<Participant> participants = Participant.find("byCompetitionLike", competition).fetch();
-        List<Problem> problems = Problem.findAll();
+        List<Problem> problems = competition.getProblems();
         if (problems == null) {
             problems = null;
         }
@@ -43,9 +42,6 @@ public class Participants extends Application {
         validation.required(participant_id);
         validation.required(problem_id);
         validation.required(solution);
-        Logger.info(Long.toString(participant_id));
-        Logger.info(Long.toString(problem_id));
-        Logger.info(solution.toString());
         if (validation.hasErrors()) {
 
             params.flash();
@@ -63,7 +59,7 @@ public class Participants extends Application {
             // TODO: Visualizar un error en la página web.
         }
 
-        if (participant.canSubmitWork != true) {
+        if (participant.canSubmitSolution != true) {
             // TODO
         }
 
@@ -74,11 +70,10 @@ public class Participants extends Application {
         Participants.index();
     }
 
-    public static void showSolution(Long problem_id) {
-        User user = connected();
-        Participant participant = Participant.find("byLogin", user.login).first();
+    public static void showSolution(Long participant_id, Long problem_id) {
+        Participant participant = Participant.findById(participant_id);
 
-        List<Solution> solutions = participant.solutions;
+        List<Solution> solutions = participant.getSolutions();
 
         assert(solutions.isEmpty() == false);
         for (Solution solution: solutions) {

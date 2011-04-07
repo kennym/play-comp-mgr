@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Jurado' /}
 #{set section:'Jurado' /}
-        
+#{set subsection:judge.name_and_surname() /}
+
+
 <div id="accordion">
     <h3>
         <a name="tab1">
@@ -17,10 +19,9 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Equipo</th>
-                    #{list competition.getProblems(), as:'problem'}
+                    #{list problems, as:'problem'}
                         <th>Solución #${problem_index}</th>
                     #{/list}
-                    <th>Trabajo</th>
                     <th>Puntaje</th>
                 </tr>
             </thead>
@@ -31,13 +32,17 @@
                     <td>${participant.name}</td>
                     <td>${participant.surname}</td>
                     <td>${participant.team}</td>
-                    #{list competition.getProblems(), as:'problem'}
-                    <td>Solución #${problem_index}</td>
-                    #{/list}
+                    #{list problems, as:'problem'}
                     <td>
-                        <a href="@{Judges.evaluateWork(participant.id)}">Evaluar</a>
+                        #{if participant.hasSolved(problem)}
+                            #{a @Judges.evaluateSolution(participant.id, problem.getSolution().id, problem.id)}Evaluar#{/a}
+                        #{/if}
+                        #{else}
+                            Pendiente
+                        #{/else}
                     </td>
-                    <td></td>
+                    #{/list}
+                    <td>${participant.getPoints()}</td>
                 </tr>
                 #{/list}
             </tbody>

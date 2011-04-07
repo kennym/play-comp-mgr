@@ -26,8 +26,9 @@ public class Problems extends Application {
         render();
     }
 
-    public static void delete() {
-
+    public static void delete(Long problem_id) {
+        Problem problem = Problem.findById(problem_id);
+        problem.delete();
     }
 
     public static void modify() {

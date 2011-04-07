@@ -36,6 +36,10 @@ public class Problem extends Model {
         create();
     }
 
+    public Solution getSolution() {
+        return Solution.find("byProblem", this).first();
+    }
+
     public boolean isSolved() {
         Solution solution = Solution.find("problem", this).first();
         try {

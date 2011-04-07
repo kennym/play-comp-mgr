@@ -46,4 +46,22 @@ public class ParticipantTest extends UnitTest {
         concursante1.submitSolution(problem_2, new Blob());
         assertNotNull(concursante1.solutions.get(1));
     }
+
+    @Test
+    public void blockParticipantSubmission() {
+        Competition competition = new Competition("Concurso Ejemplar", "", null, null).save();
+
+        Team team = competition.createTeam("Equipo Ejemplar");
+        Participant competitor_1 = competition.createParticipant(team, "Kenny", "Meyer", "kenny", "meyer");
+        Participant competitor_2 = competition.createParticipant(team, "Kenny", "Meyer", "kenny", "meyer");
+
+        assertFalse(competitor_1.canSubmitSolution);
+        assertFalse(competitor_2.canSubmitSolution);
+        competitor_1.canSubmitSolution(false);
+        competitor_2.canSubmitSolution(false);
+        assertTrue(competitor_1.canSubmitSolution);
+        assertTrue(competitor_2.canSubmitSolution);
+
+
+    }
 }

@@ -49,14 +49,14 @@ public class Solution extends Model {
         create();
     }
 
+    public Evaluation getEvaluation() {
+        return Evaluation.find("bySolution", this).first();
+    }
+
     public boolean exists() {
         if (this.blob.exists()) {
             return true;
         }
         return false;
-    }
-
-    public void evaluate() {
-
     }
 }

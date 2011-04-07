@@ -6,13 +6,7 @@ import play.mvc.*;
 
 import models.*;
 
-/**
- * Class Name
- *
- * Class description - Explain why you need it and what it does.
- *
- * @author Kenny Meyer <knny.myer@gmail.com>
- */
+
 @With(Secure.class)
 public class Judges extends Application {
     public static void index() {
@@ -31,17 +25,28 @@ public class Judges extends Application {
 
         Judge judge = Judge.find("byLogin", user.login).first();
         Competition competition = judge.competition;
-        List<Participant> participants = Participant.all().fetch();
+        List<Participant> participants = competition.getParticipants();
+        List<Problem> problems = competition.getProblems();
 
-        render(judge, competition, participants);
+        render(judge, competition, participants, problems);
     }
 
     /**
-     * Evaluar concursante por su trabajo subido.
+     * Evaluate the submitted solution with the specified id.
      *
-     * @param id Identificador del concursante
+     * @param participant_id ID of the solution
+     * @param solution_id ID of the solution
      */
-    public static void evaluateWork(Long id) {
-        // TODO
+    public static void evaluateSolution(Long participant_id,
+                                        Long solution_id,
+                                        Long problem_id) {
+        // Get the solution
+        Solution solution = Solution.findById(solution_id);
+        // Get the problem to the solution
+        Problem problem = Problem.findById(problem_id);
+        // Get the participant
+        Participant participant = Participant.findById(participant_id);
+
+        render(participant, solution, problem);
     }
 }

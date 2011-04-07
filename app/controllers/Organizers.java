@@ -91,7 +91,7 @@ public class Organizers extends Application {
     public static void blockSubmission(Long id, boolean canSubmit) {
         Participant participant = Participant.findById(id);
 
-        participant.canSubmit(canSubmit);
+        participant.canSubmitSolution(canSubmit);
 
         Organizers.index();
     }

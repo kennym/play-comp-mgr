@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
+import org.bouncycastle.util.Strings;
 import org.joda.time.*;
 import org.hibernate.annotations.Type;
 
@@ -33,9 +34,9 @@ public class Competition extends Model {
     public Date endTime;
 
     /**
-     * Duración del concurso.
+     * Duration of the competition
      */
-    @Column(name = "duracion_datetime", nullable = true)
+    @Column(name = "duration_datetime", nullable = true)
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime duration;
 
@@ -87,6 +88,7 @@ public class Competition extends Model {
         this.duration = null;
 
         this.problems.clear();
+        this.unblockSubmissions();
 
         save();
     }
@@ -110,7 +112,15 @@ public class Competition extends Model {
 
     public void blockSubmissions() {
         for(Participant participant: this.participants) {
-            participant.canSubmit(false);
+            participant.canSubmitSolution(false);
+        }
+
+        save();
+    }
+
+    public void unblockSubmissions() {
+        for(Participant participant: this.participants) {
+            participant.canSubmitSolution(false);
         }
 
         save();
@@ -132,6 +142,10 @@ public class Competition extends Model {
 
     public List<Problem> getProblems() {
         return Problem.find("byCompetition", this).fetch();
+    }
+
+    public List<Participant> getParticipants() {
+        return Participant.find("byCompetition", this).fetch();
     }
 
     /**

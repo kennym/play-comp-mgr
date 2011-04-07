@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Jurado' /}
+#{set section:'Jurado' /}
+#{set subsection:'Evaluación' /}
+
+
+<div id="main-section">
+    <h3>
+        Evaluación
+    </h3>
+
+    <ul>
+        <li>Participante: ${participant.name_and_surname()}</li>
+        <li>Tiempo de entrega: ${solution.creationDate.format('hh:mm:ss')} (${solution.creationDate.since()})</li>
+    </ul>
+    
+    <h2>Anunciado del problema</h2>
+    <blockquote>
+        ${problem.description}
+    </blockquote>
+
+    <p>Solución entregada: #{a @Participants.showSolution(participant.id, problem.id)}Ver#{/a}</p>
+
+    <fieldset>
+        <input type="checkbox"><label>Compilación correcta</label><br/>
+        <input type="checkbox"><label>Devuelve el resultado correcto.</label>
+    </fieldset>
+
+    <div id="points">
+        <span id="points-left">Puntaje acumulado:</span>
+        <span id="points-right">Total:</span>
+    </div>
+</div>
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+    
+</script>
+#{/set}

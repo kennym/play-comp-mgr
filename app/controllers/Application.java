@@ -19,7 +19,7 @@ public class Application extends CRUD {
     }
 
     /**
-     * Verificar que un Ussser está conectado y devolverlo.
+     * Return the connected user
      */
     static User connected() {
         if (renderArgs.get("user") != null) {
