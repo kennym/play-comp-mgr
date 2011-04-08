@@ -15,7 +15,19 @@ public class Security extends Secure.Security {
     }
 
     static void onAuthenticated() {
-        Admin.index();
+        // Get the authenticated user
+        User user = User.find("byLogin", connected()).first();
+
+        // Redirect the authenticated user to its correspondent page
+        if (user.role == ApplicationRole.getByName("participant")) {
+            Participants.index();
+        } else if (user.role == ApplicationRole.getByName("judge")) {
+            Judges.index();
+        } else if (user.role == ApplicationRole.getByName("organizer")) {
+            Organizers.index();
+        } else {
+            Admin.index();
+        }
     }
 
     static boolean check(String profile) {
